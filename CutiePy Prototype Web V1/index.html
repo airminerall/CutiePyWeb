@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CutiePy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden">
+
+    <section id="auth-gate" class="auth-gate hidden" aria-labelledby="auth-gate-title">
+        <div class="auth-gate-menu" aria-label="Account options">
+            <button type="button" class="auth-gate-menu-button" aria-label="More options">...</button>
+        </div>
+        <div class="auth-gate-content">
+            <div class="auth-gate-art" aria-hidden="true">
+                <div class="auth-gate-orbit auth-gate-orbit-one"></div>
+                <div class="auth-gate-orbit auth-gate-orbit-two"></div>
+                <div class="auth-gate-code">&lt;/&gt;</div>
+                <div class="auth-gate-spark auth-gate-spark-one"></div>
+                <div class="auth-gate-spark auth-gate-spark-two"></div>
+            </div>
+            <p class="auth-gate-eyebrow">Learn. Build. Create.</p>
+            <h1 id="auth-gate-title">CutiePy</h1>
+            <button type="button" class="auth-gate-enter" onclick="window.location.href='auth.html?mode=login'">Sign In</button>
+            <div class="auth-gate-actions">
+                <button type="button" class="auth-gate-register" onclick="window.location.href='auth.html?mode=signup'">Register</button>
+            </div>
+            <p class="auth-gate-caption">Your playful place to learn Python.</p>
+        </div>
+    </section>
+
+    <!-- Global Navigation -->
+    <nav id="global-nav" class="w-full bg-[rgba(255,255,255,0.42)] backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between h-14 text-sm font-medium text-gray-800">
+                <a href="#" onclick="event.preventDefault(); navigateTo('home')" class="hover:text-black transition-colors flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="text-base font-semibold tracking-tight">CutiePy</span>
+                </a>
+                
+                <div class="main-nav-links hidden md:flex items-center gap-1 p-1">
+                    <a href="#" data-nav-view="home" onclick="event.preventDefault(); navigateTo('home')" class="nav-link is-active hover:text-black transition-colors">Home</a>
+                    <a href="#" data-nav-view="lesson-menu" onclick="event.preventDefault(); navigateTo('lesson-menu')" class="nav-link hover:text-black transition-colors">Lessons</a>
+                    <a href="#" data-nav-view="challenge" onclick="event.preventDefault(); navigateTo('challenge')" class="nav-link hover:text-black transition-colors">Challenge</a>
+                </div>
+
+                <div class="flex items-center space-x-5">
+                    <button type="button" id="nav-search-btn" onclick="toggleSearchPanel()" aria-label="Search lessons" class="hover:text-black transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                    <button onclick="openAccountPage()" id="nav-user-btn" class="hover:text-black transition-colors flex items-center gap-1 font-medium">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span id="nav-username">Sign In</span>
+                    </button>
+                    <button onclick="openAuthPage('signup')" class="hover:text-black transition-colors font-medium">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="site-search" class="site-search hidden" role="search" aria-label="Search lessons">
+        <label class="sr-only" for="site-search-input">Search lessons</label>
+        <input id="site-search-input" type="search" placeholder="Search lessons..." autocomplete="off">
+        <div id="site-search-results" class="site-search-results" aria-live="polite"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main id="main-content" class="flex-grow">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <div id="view-home" class="view-section block pb-20">
+            <section class="w-full bg-gradient-to-b from-[#e1eaf5] to-white pt-24 pb-16 px-4 text-center">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Surprise and shine.</h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">Master Python with elegance. Start your coding journey today with our meticulously designed lessons.</p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="navigateTo('lesson-menu')" class="apple-btn bg-black text-white px-6 py-2 text-sm font-medium hover:bg-gray-800">Start Learning</button>
+                    <button onclick="navigateTo('group')" class="apple-btn bg-transparent border border-gray-400 text-black px-6 py-2 text-sm font-medium hover:bg-gray-100">Meet the Group</button>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 py-16">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-8 tracking-tight">The latest. <span class="text-gray-500 font-normal">Take a look at what's new, right now.</span></h2>
+                <div id="home-lesson-catalog" class="home-lesson-catalog flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-6 pb-8"></div>
+            </section>
+
+            <section class="python-intro max-w-6xl mx-auto px-4 py-16">
+                <div class="python-intro-video" aria-label="Python introduction video coming soon">
+                    <div class="python-video-screen">
+                        <span class="python-video-play" aria-hidden="true">&#9654;</span>
+                        <span class="python-video-label">Video coming soon</span>
+                    </div>
+                </div>
+                <div class="python-intro-copy">
+                    <p class="python-intro-eyebrow">Start here</p>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">What is Python?</h2>
+                    <p>Python is a high-level, general-purpose programming language created by Guido van Rossum and first released in 1991. This design goal shows up directly in Python's syntax: it uses indentation (whitespace) to define code blocks rather than braces or keywords, which forces a clean, consistent visual structure across all Python code, regardless of who wrote it.</p>
+                    <p>Python is dynamically typed and interpreted, meaning variables don't require explicit type declarations, and code is executed line-by-line by an interpreter rather than compiled ahead of time into machine code.</p>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto px-4 py-24 text-center border-t border-gray-200 mt-12">
+                <h2 class="text-4xl font-bold mb-6 tracking-tight">The Visionaries.</h2>
+                <p class="text-xl text-gray-600 mb-10">Discover the minds behind CutiePy and our mission to make programming education elegant.</p>
+                <button onclick="navigateTo('group')" class="apple-btn bg-black text-white px-8 py-4 text-lg font-medium hover:bg-gray-800 shadow-lg inline-flex items-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    Meet the Group
+                </button>
+            </section>
+        </div>
+
+        <div id="view-lesson-menu" class="view-section hidden pb-20">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                
+                <div class="mb-12">
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                        <button onclick="navigateTo('home')" class="hover:text-black">Home</button>
+                        <span>/</span>
+                        <span class="text-black">Lessons</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">All models. <span class="text-gray-400 font-normal">Take your pick.</span></h1>
+                    <p class="text-gray-500 mt-2">Select a lesson module below to begin your dedicated session.</p>
+                </div>
+
+                <div id="lesson-catalog" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"></div>
+            </div>
+        </div>
+
+        <!-- ================= LESSON DETAIL VIEW (DEDICATED PAGE) ================= -->
+        <div id="view-lesson-detail" class="view-section hidden pb-20">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                
+                <!-- Breadcrumbs -->
+                <div class="mb-8 hidden">
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <button onclick="navigateTo('home')" class="hover:text-black transition-colors">Home</button>
+                        <span>/</span>
+                        <button onclick="navigateTo('lesson-menu')" class="hover:text-black transition-colors">Lessons</button>
+                        <span>/</span>
+                        <span id="lesson-breadcrumb" class="text-black font-medium">Lesson 1</span>
+                    </div>
+                </div>
+
+                <!-- Dedicated View Container (Matches Screenshot Layout) -->
+                <div class="bg-white rounded-[32px] p-8 lg:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
+                    
+                    <!-- Left Side: Theory & Content -->
+                    <div class="flex flex-col">
+                        <div class="mb-8">
+                            <span class="inline-block px-3 py-1 bg-gray-100 text-[11px] font-bold rounded-full text-gray-500 uppercase tracking-widest mb-6" id="lesson-badge">MODULE 1</span>
+                            <h2 id="lesson-title" class="text-4xl md:text-[42px] font-bold tracking-tight text-gray-900 mb-4">Lesson 1: Hello World</h2>
+                            <p id="lesson-subtitle" class="text-gray-500 text-xl font-medium">Your first step into the world of Python.</p>
+                        </div>
+
+                        <div id="lesson-video-container" class="lesson-video-container" aria-label="Lesson video">
+                            <video id="lesson-video" class="lesson-video" controls preload="metadata" hidden></video>
+                            <div id="lesson-video-placeholder" class="lesson-video-placeholder">
+                                <span class="lesson-video-icon" aria-hidden="true">&#9654;</span>
+                                <span>Lesson video coming soon</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#f8f9fa] p-8 rounded-3xl border border-gray-100 mt-auto">
+                            <h4 class="font-semibold text-sm uppercase tracking-widest text-gray-500 mb-4" id="lesson-theory-title">INTRODUCTION TO PRINT</h4>
+                            <p id="lesson-theory-desc" class="text-gray-700 text-[15px] leading-relaxed mb-6">Welcome to CutiePy. In this lesson, we will learn how to communicate with the computer using the print() function. It is the most basic yet powerful tool in your toolkit.</p>
+                            <div class="bg-black text-white p-5 rounded-2xl font-mono text-sm shadow-inner" id="lesson-syntax-box">
+                                print("Hello, CutiePy!")
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Interactive Terminal & Actions -->
+                    <div class="flex flex-col h-full pt-2">
+                        
+                        <div class="flex justify-between items-end mb-4 px-2">
+                            <h3 class="font-semibold text-xl text-gray-900">Interactive Terminal</h3>
+                            <span class="text-xs font-medium text-gray-400">Python 3.12 Runtime</span>
+                        </div>
+                        
+                        <!-- Terminal UI -->
+                        <div class="code-editor bg-[#1a1a1a] rounded-[24px] flex flex-col flex-grow min-h-[400px] shadow-lg overflow-hidden border border-gray-800">
+                            
+                            <!-- Mac Traffic Lights -->
+                            <div class="flex space-x-2 p-5 border-b border-gray-800/50 bg-[#1a1a1a]">
+                                <div class="w-3.5 h-3.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
+                                <div class="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
+                                <div class="w-3.5 h-3.5 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
+                            </div>
+                            
+                            <!-- Editor Area -->
+                            <div class="p-6 flex-grow flex flex-col relative">
+                                <div class="code-input-layer text-[15px] font-mono leading-relaxed">
+                                    <pre id="lesson-code-highlight" class="code-highlight" aria-hidden="true"></pre>
+                                    <textarea id="lesson-code" class="code-input text-[15px] font-mono leading-relaxed" spellcheck="false">print("Hello, CutiePy!")</textarea>
+                                </div>
+                                
+                                <!-- Output Area (Inside Terminal) -->
+                                <div id="lesson-output-container" class="mt-4 border-t border-gray-800 pt-5 hidden">
+                                    <p class="text-xs text-gray-600 mb-2 font-mono">Output:</p>
+                                    <p id="lesson-output" class="text-gray-200 font-mono text-[15px] whitespace-pre-line"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 px-2 sm:px-6">
+                            <button onclick="executeCode('lesson')" id="lesson-run-btn" class="apple-btn bg-black text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-gray-800 shadow-xl transition-all duration-300">Run Code</button>
+                            
+                            <button onclick="navigateTo('challenge')" class="apple-btn bg-[#3b66d6] text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 shadow-xl transition-all duration-300">
+                                Go to Challenge
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="view-challenge" class="view-section hidden pb-20">
+            <div class="max-w-5xl mx-auto px-4 py-12">
+                <div class="mb-10 text-center">
+                    <p class="text-[var(--apple-orange)] font-semibold uppercase tracking-widest text-sm mb-2">Challenge Progress</p>
+                    <h1 class="text-4xl font-bold tracking-tight">Interactive Pathway</h1>
+                    <p class="text-gray-500 mt-2">Complete each lesson challenge in sequence to unlock subsequent milestones.</p>
+                </div>
+                <div id="challenge-catalog" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12"></div>
+
+                <!-- Active Challenge Workspace -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-12">
+                    
+                    <div class="flex-1 flex flex-col justify-between space-y-6">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1" id="challenge-active-label">Lesson 1 Challenge</p>
+                            <h3 class="text-2xl font-semibold mb-4" id="challenge-task-title">The Task</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6" id="challenge-task-desc">Write a Python script that calculates 5 + 5 and prints the result to the console.</p>
+                            
+                            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                                <h4 class="text-sm font-semibold uppercase text-gray-500 mb-3 flex items-center gap-2">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                    Hint
+                                </h4>
+                                <p class="text-gray-700 text-sm" id="challenge-hint-text">You can place mathematical operations directly inside the print() function, like this: print(2 + 2)</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-8 border-t border-gray-100 flex justify-between items-center text-sm font-medium">
+                             <button onclick="navigateTo('lesson-menu')" class="text-gray-600 hover:text-black flex items-center gap-2 transition-colors">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                Return to Lessons
+                            </button>
+                             <button onclick="openLessonFromChallenge()" class="text-[var(--apple-blue)] hover:underline flex items-center gap-2 transition-colors">
+                                Review Lesson Material
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 flex flex-col">
+                        <div class="code-editor p-4 flex-grow min-h-[300px] mb-6 flex flex-col relative">
+                            <div class="flex space-x-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-gray-600"></div>
+                                <div class="w-3 h-3 rounded-full bg-gray-600"></div>
+                                <div class="w-3 h-3 rounded-full bg-gray-600"></div>
+                            </div>
+                            <div class="code-input-layer text-sm">
+                                <pre id="challenge-code-highlight" class="code-highlight" aria-hidden="true"></pre>
+                                <textarea id="challenge-code" class="code-input text-sm" spellcheck="false" placeholder="# Type your code here..."></textarea>
+                            </div>
+                            
+                            <div id="challenge-output-container" class="mt-4 border-t border-gray-700 pt-4 hidden">
+                                <p class="text-xs text-gray-500 mb-1">Output:</p>
+                                <p id="challenge-output" class="text-white font-mono text-sm whitespace-pre-line"></p>
+                            </div>
+                        </div>
+                        <button onclick="executeChallenge()" id="challenge-run-btn" class="apple-btn bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 w-full">Submit Answer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="view-group" class="view-section hidden pb-20">
+            <div class="w-full bg-white border-b border-gray-200 py-16 px-4 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-5xl font-bold tracking-tight mb-4">Group</h1>
+                    <p class="text-xl text-gray-500">The collective minds engineering CutiePy.</p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div onclick="openGroupProfile('christian')" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center apple-card flex flex-col items-center cursor-pointer">
+                        <img class="group-member-photo" src="assets/christian-nathan-prbadi.jpg" alt="Christian Nathan Prbadi" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <h3 class="text-xl font-bold mb-1">Christian Nathan Prbadi</h3>
+                        <p class="text-[var(--apple-blue)] font-medium text-sm mb-4">CEO</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Leading the vision and growth of CutiePy as a place to learn Python with confidence.</p>
+                    </div>
+                    
+                    <div onclick="openGroupProfile('stanly')" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center apple-card flex flex-col items-center cursor-pointer">
+                        <img class="group-member-photo group-member-photo-stanly" src="assets/stanly-lukmana.jpg" alt="Stanly Lukmana" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <h3 class="text-xl font-bold mb-1">Stanly Lukmana</h3>
+                        <p class="text-[var(--apple-blue)] font-medium text-sm mb-4">CIO</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Guiding CutiePy's technology direction and building a thoughtful learning experience for every student.</p>
+                    </div>
+
+                    <div onclick="openGroupProfile('nathanael')" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center apple-card flex flex-col items-center cursor-pointer">
+                        <img class="group-member-photo" src="assets/nathanael-cavell-andruvi.jpg" alt="Nathanael Cavell Andruvi" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <h3 class="text-xl font-bold mb-1">Nathanael Cavell Andruvi</h3>
+                        <p class="text-[var(--apple-blue)] font-medium text-sm mb-4">CTO</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Driving the technical strategy and shaping the systems behind CutiePy's learning platform.</p>
+                    </div>
+
+                </div>
+
+                <div class="group-member-bottom grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-8">
+                    <div onclick="openGroupProfile('jennifer')" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center apple-card flex flex-col items-center cursor-pointer">
+                        <img class="group-member-photo" src="assets/jennifer-senjaya.jpg" alt="Jennifer Senjaya" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <h3 class="text-xl font-bold mb-1">Jennifer Senjaya</h3>
+                        <p class="text-[var(--apple-blue)] font-medium text-sm mb-4">Writer / Tester</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Making every lesson clear, engaging, and carefully tested for a smooth learning experience.</p>
+                    </div>
+
+                    <div onclick="openGroupProfile('jasselynn')" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center apple-card flex flex-col items-center cursor-pointer">
+                        <img class="group-member-photo" src="assets/jasselynn-alessandrea-chandra.jpg" alt="Jasselynn Alessandrea Chandra" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <h3 class="text-xl font-bold mb-1">Jasselynn Alessandrea Chandra</h3>
+                        <p class="text-[var(--apple-blue)] font-medium text-sm mb-4">Media Manager</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">Connecting CutiePy with its community through thoughtful communication and creative media.</p>
+                    </div>
+
+                </div>
+
+                <div class="mt-16 text-center">
+                     <button onclick="navigateTo('home')" class="apple-btn bg-gray-100 text-black px-8 py-3 font-medium hover:bg-gray-200">
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-group-profile" class="view-section hidden pb-20">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <button onclick="navigateTo('group')" class="mb-10 text-gray-600 hover:text-black flex items-center gap-2 transition-colors">
+                    <span aria-hidden="true">&larr;</span> Back to Group
+                </button>
+                <article class="group-profile bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="group-profile-header"></div>
+                    <div class="px-6 pb-10 sm:px-12">
+                        <img class="group-profile-photo" src="assets/christian-nathan-prbadi.jpg" alt="Christian Nathan Prbadi" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <p class="text-[var(--apple-blue)] font-semibold text-sm uppercase tracking-widest mt-6">CEO</p>
+                        <h1 class="text-4xl font-bold tracking-tight mt-2 mb-5">Christian Nathan Prbadi</h1>
+                        <p class="text-gray-600 text-lg leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat consequat consequat. Curabitur euismod, nisl at convallis pretium, justo nulla tincidunt lorem, vitae posuere nibh lorem non erat.</p>
+                        <p class="text-gray-600 leading-relaxed mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="view-group-profile-stanly" class="view-section hidden pb-20">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <button onclick="navigateTo('group')" class="mb-10 text-gray-600 hover:text-black flex items-center gap-2 transition-colors">
+                    <span aria-hidden="true">&larr;</span> Back to Group
+                </button>
+                <article class="group-profile bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="group-profile-header"></div>
+                    <div class="px-6 pb-10 sm:px-12">
+                        <img class="group-profile-photo group-profile-photo-stanly" src="assets/stanly-lukmana.jpg" alt="Stanly Lukmana" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <p class="text-[var(--apple-blue)] font-semibold text-sm uppercase tracking-widest mt-6">CIO</p>
+                        <h1 class="text-4xl font-bold tracking-tight mt-2 mb-5">Stanly Lukmana</h1>
+                        <p class="text-gray-600 text-lg leading-relaxed">I serve as the CIO for CutiePy, where I drive both our operational workflow and the hands-on creation of the platform. In my managerial role, my primary responsibility is to organize, manage, and meticulously compile all project tasks. I ensure that every team assignment is structured, tracked, and delivered smoothly, maintaining clear alignment with our project timeline. By coordinating deliverables and keeping communication streamlined, I eliminate bottlenecks and ensure our team operates cohesively.</p>
+                        <p class="text-gray-600 leading-relaxed mt-5">Beyond my administrative duties, I am deeply involved in the practical development of the CutiePy website. I work directly on building, refining, and testing the platform to guarantee a seamless user experience. By collaborating closely with the team on daily technical execution, I bridge the gap between high-level planning and actual web production.
+                            
+                        My combination of rigorous task management and direct website development makes me fully dedicated to bringing the CutiePy initiative to success.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="view-account" class="view-section hidden pb-20">
+            <div class="max-w-5xl mx-auto px-4 py-12">
+                <div class="account-heading text-center mb-10">
+                    <div class="account-avatar" aria-hidden="true">&lt;/&gt;</div>
+                    <p class="text-[var(--apple-orange)] font-semibold uppercase tracking-widest text-sm mb-2">Your Workspace</p>
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Account</h1>
+                    <p id="account-email-display" class="text-gray-500 mt-2">student@example.com</p>
+                </div>
+
+                <section class="account-summary bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 mb-8 text-center">
+                    <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Profile</p>
+                    <h2 id="account-name-display" class="text-2xl font-bold">Student</h2>
+                    <form id="account-name-form" class="account-name-form">
+                        <label class="sr-only" for="account-name-input">Change name</label>
+                        <input id="account-name-input" class="account-name-input" type="text" placeholder="Your name" required>
+                        <button class="apple-btn bg-black text-white px-5 py-2.5 text-sm font-medium hover:bg-gray-800" type="submit">Save Name</button>
+                    </form>
+                </section>
+
+                <section class="account-progress bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 mb-8">
+                    <div class="flex items-end justify-between gap-4 mb-4">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Learning Progress</p>
+                            <h2 class="text-2xl font-bold"><span id="account-progress-count">0</span> of <span id="account-progress-total">12</span> challenges completed</h2>
+                        </div>
+                        <span id="account-progress-percent" class="text-[var(--apple-blue)] font-bold">0%</span>
+                    </div>
+                    <div class="account-progress-track" aria-label="Challenge completion progress">
+                        <div id="account-progress-bar" class="account-progress-bar"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="flex items-end justify-between mb-5">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Milestones</p>
+                            <h2 class="text-2xl font-bold">Achievements</h2>
+                        </div>
+                    </div>
+                    <div id="achievement-list" class="achievement-roadmap">
+                        <div class="achievement-roadmap-line" aria-hidden="true"></div>
+                        <article class="achievement-step" data-requirement="1">
+                            <div class="achievement-step-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 4.5 3.4 7.7 8 9 4.6-1.3 8-4.5 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <h3>Beginner</h3>
+                            <p>Complete 1 challenge</p>
+                            <span>Locked</span>
+                        </article>
+                        <article class="achievement-step" data-requirement="3">
+                            <div class="achievement-step-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M8.5 12 7 21l5-3 5 3-1.5-9"/><path d="m10 8 1.5 1.5L14 7"/></svg>
+                            </div>
+                            <h3>Amateur</h3>
+                            <p>Complete 3 challenges</p>
+                            <span>Locked</span>
+                        </article>
+                        <article class="achievement-step" data-requirement="6">
+                            <div class="achievement-step-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+                            </div>
+                            <h3>Intermediate</h3>
+                            <p>Complete 6 challenges</p>
+                            <span>Locked</span>
+                        </article>
+                        <article class="achievement-step" data-requirement="10">
+                            <div class="achievement-step-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2M3 8h18"/><path d="M9 13h6"/></svg>
+                            </div>
+                            <h3>Pro</h3>
+                            <p>Complete 10 challenges</p>
+                            <span>Locked</span>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div id="view-group-profile-nathanael" class="view-section hidden pb-20">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <button onclick="navigateTo('group')" class="mb-10 text-gray-600 hover:text-black flex items-center gap-2 transition-colors"><span aria-hidden="true">&larr;</span> Back to Group</button>
+                <article class="group-profile bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="group-profile-header"></div>
+                    <div class="px-6 pb-10 sm:px-12">
+                        <img class="group-profile-photo" src="assets/nathanael-cavell-andruvi.jpg" alt="Nathanael Cavell Andruvi" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <p class="text-[var(--apple-blue)] font-semibold text-sm uppercase tracking-widest mt-6">CTO</p>
+                        <h1 class="text-4xl font-bold tracking-tight mt-2 mb-5">Nathanael Cavell Andruvi</h1>
+                        <p class="text-gray-600 text-lg leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat consequat consequat. Curabitur euismod, nisl at convallis pretium, justo nulla tincidunt lorem, vitae posuere nibh lorem non erat.</p>
+                        <p class="text-gray-600 leading-relaxed mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="view-group-profile-jennifer" class="view-section hidden pb-20">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <button onclick="navigateTo('group')" class="mb-10 text-gray-600 hover:text-black flex items-center gap-2 transition-colors"><span aria-hidden="true">&larr;</span> Back to Group</button>
+                <article class="group-profile bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="group-profile-header"></div>
+                    <div class="px-6 pb-10 sm:px-12">
+                        <img class="group-profile-photo" src="assets/jennifer-senjaya.jpg" alt="Jennifer Senjaya" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <p class="text-[var(--apple-blue)] font-semibold text-sm uppercase tracking-widest mt-6">Writer / Tester</p>
+                        <h1 class="text-4xl font-bold tracking-tight mt-2 mb-5">Jennifer Senjaya</h1>
+                        <p class="text-gray-600 text-lg leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat consequat consequat. Curabitur euismod, nisl at convallis pretium, justo nulla tincidunt lorem, vitae posuere nibh lorem non erat.</p>
+                        <p class="text-gray-600 leading-relaxed mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="view-group-profile-jasselynn" class="view-section hidden pb-20">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <button onclick="navigateTo('group')" class="mb-10 text-gray-600 hover:text-black flex items-center gap-2 transition-colors"><span aria-hidden="true">&larr;</span> Back to Group</button>
+                <article class="group-profile bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="group-profile-header"></div>
+                    <div class="px-6 pb-10 sm:px-12">
+                        <img class="group-profile-photo" src="assets/jasselynn-alessandrea-chandra.jpg" alt="Jasselynn Alessandrea Chandra" onerror="this.classList.add('image-missing'); this.alt='Photo unavailable';">
+                        <p class="text-[var(--apple-blue)] font-semibold text-sm uppercase tracking-widest mt-6">Media Manager</p>
+                        <h1 class="text-4xl font-bold tracking-tight mt-2 mb-5">Jasselynn Alessandrea Chandra</h1>
+                        <p class="text-gray-600 text-lg leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat consequat consequat. Curabitur euismod, nisl at convallis pretium, justo nulla tincidunt lorem, vitae posuere nibh lorem non erat.</p>
+                        <p class="text-gray-600 leading-relaxed mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- SECURE AUTHENTICATION MODAL -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative border border-gray-100 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            <!-- Modal Header Tabs -->
+            <div class="flex border-b border-gray-200 mb-6">
+                <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 pb-3 text-sm font-semibold text-black border-b-2 border-black transition-colors">Sign In</button>
+                <button onclick="switchAuthTab('signup')" id="tab-signup" class="flex-1 pb-3 text-sm font-medium text-gray-400 border-b-2 border-transparent transition-colors">Create Account</button>
+            </div>
+
+            <!-- Form -->
+            <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div id="name-field-container" class="hidden">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Full Name</label>
+                    <input type="text" id="auth-name" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors" placeholder="Alex Smith">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Email Address</label>
+                    <input type="email" id="auth-email" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors" placeholder="name@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Password</label>
+                    <input type="password" id="auth-password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors" placeholder="••••••••">
+                </div>
+
+                <!-- Remember Me Checkbox -->
+                <div id="remember-me-container" class="flex items-center justify-between text-xs text-gray-600 pt-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="remember-me-checkbox" class="rounded border-gray-300 text-black focus:ring-black">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="hover:underline text-gray-500">Forgot password?</a>
+                </div>
+                
+                <p id="auth-error" class="text-xs text-red-500 hidden"></p>
+
+                <button type="submit" id="auth-submit-btn" class="apple-btn bg-black text-white w-full py-3 font-medium hover:bg-gray-800 transition-colors mt-2">Sign In</button>
+            </form>
+
+            <div class="relative flex py-4 items-center">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="flex-shrink mx-4 text-xs text-gray-400 uppercase tracking-widest">or</span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+
+            <!-- Google Auth Button placed directly below standard form inputs -->
+            <button onclick="simulateGoogleAuth()" class="w-full border border-gray-300 rounded-full py-3 px-4 text-sm font-medium flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.19v3.15C3.17 21.36 7.23 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.19C.43 8.1 0 9.99 0 12s.43 3.9 1.19 5.42l4.09-3.15z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.17 2.64 1.19 6.58l4.09 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                </svg>
+                <span id="google-btn-text">Sign in with Google</span>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <p>Copyright © 2026 CutiePy Inc. All rights reserved.</p>
+            <div class="space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-black">Privacy Policy</a>
+                <a href="#" class="hover:text-black">Terms of Use</a>
+                <a href="#" class="hover:text-black">Site Map</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/interpreter.js"></script>
+    <script src="js/syntax-highlighter.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/execution.js"></script>
+    <script src="js/app.js"></script>
+    <!--
+        // State Management & Session Reset on Reload
+        let authState = {
+            isLoggedIn: false,
+            user: null,
+            currentMode: 'login'
+        };
+
+        // 5 Structured Lessons Data
+        const lessonsData = {
+            1: {
+                title: "Lesson 1: Hello World",
+                subtitle: "Your first step into the world of Python.",
+                breadcrumb: "Lesson 1",
+                badge: "Module 1",
+                theoryTitle: "Introduction to Print",
+                theoryDesc: "Welcome to CutiePy. In this lesson, we will learn how to communicate with the computer using the print() function. It is the most basic yet powerful tool in your toolkit.",
+                syntax: 'print("Hello, CutiePy!")',
+                defaultCode: 'print("Hello, CutiePy!")',
+                challengeTask: "Write a Python script that calculates 5 + 5 and prints the result to the console.",
+                challengeHint: "You can place mathematical operations directly inside the print() function, like this: print(2 + 2)",
+                expectedResult: "10"
+            },
+            2: {
+                title: "Lesson 2: Variables",
+                subtitle: "Storing and managing data in Python.",
+                breadcrumb: "Lesson 2",
+                badge: "Module 2",
+                theoryTitle: "Assigning Variables",
+                theoryDesc: "Variables are containers for storing data values. In Python, a variable is created the moment you first assign a value to it using the equals sign.",
+                syntax: 'name = "CutiePy"\nprint(name)',
+                defaultCode: 'x = 10\ny = 20\nprint(x + y)',
+                challengeTask: "Create two variables a = 15 and b = 25, then print their sum.",
+                challengeHint: "Assign numbers to variables and print their sum: a = 5; b = 5; print(a + b)",
+                expectedResult: "40"
+            },
+            3: {
+                title: "Lesson 3: Loops",
+                subtitle: "Automating repetitive workflows.",
+                breadcrumb: "Lesson 3",
+                badge: "Module 3",
+                theoryTitle: "For Loops",
+                theoryDesc: "Loops allow you to run a block of code multiple times. A for loop in Python is used for iterating over a sequence.",
+                syntax: 'for i in range(3):\n    print(i)',
+                defaultCode: 'for i in range(3):\n    print(i)',
+                challengeTask: "Write a loop that iterates 3 times using range(3) and prints each number.",
+                challengeHint: "Use: for i in range(3): print(i)",
+                expectedResult: "0\n1\n2"
+            },
+            4: {
+                title: "Lesson 4: Functions",
+                subtitle: "Structuring modular logic blocks.",
+                breadcrumb: "Lesson 4",
+                badge: "Module 4",
+                theoryTitle: "Defining Functions",
+                theoryDesc: "A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function.",
+                syntax: 'def greet():\n    print("Hello")',
+                defaultCode: 'def say_hello():\n    print("Python is fun")\n\nsay_hello()',
+                challengeTask: "Define a function named run() that prints 'Active' and call it.",
+                challengeHint: "def run():\n    print('Active')\nrun()",
+                expectedResult: "Active"
+            },
+            5: {
+                title: "Lesson 5: Objects",
+                subtitle: "Advanced object-oriented programming.",
+                breadcrumb: "Lesson 5",
+                badge: "Module 5",
+                theoryTitle: "Classes & Objects",
+                theoryDesc: "Python is an object-oriented programming language. Almost everything in Python is an object, with its properties and methods.",
+                syntax: 'class Code:\n    pass',
+                defaultCode: 'class Python:\n    version = "3.12"\n\nprint(Python.version)',
+                challengeTask: "Create a class named Bot with a property status = 'Online', and print Bot.status.",
+                challengeHint: "class Bot:\n    status = 'Online'\nprint(Bot.status)",
+                expectedResult: "Online"
+            }
+        };
+
+        let currentLessonId = 1;
+        let activeChallengeLesson = 1;
+        let completedLessonsCount = 0; // Tracks unlocked milestones
+
+        // View Router
+        function navigateTo(viewId) {
+            const views = document.querySelectorAll('.view-section');
+            views.forEach(view => {
+                view.classList.add('hidden');
+                view.classList.remove('block');
+            });
+            const target = document.getElementById('view-' + viewId);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Open specific lesson module (Dedicated Full-Page Lesson View)
+        function openLessonDetail(id) {
+            currentLessonId = id;
+            const data = lessonsData[id];
+            
+            document.getElementById('lesson-breadcrumb').innerText = data.breadcrumb;
+            document.getElementById('lesson-title').innerText = data.title;
+            document.getElementById('lesson-subtitle').innerText = data.subtitle;
+            document.getElementById('lesson-badge').innerText = data.badge;
+            document.getElementById('lesson-theory-title').innerText = data.theoryTitle;
+            document.getElementById('lesson-theory-desc').innerText = data.theoryDesc;
+            document.getElementById('lesson-syntax-box').innerText = data.syntax;
+            setCodeValue('lesson-code', data.defaultCode);
+            document.getElementById('lesson-output-container').classList.add('hidden');
+
+            navigateTo('lesson-detail');
+        }
+
+        // Open Lesson from Challenge View
+        function openLessonFromChallenge() {
+            openLessonDetail(activeChallengeLesson);
+        }
+
+        // Select Challenge from Apple-style Bubble Menu
+        function selectChallengeLesson(id) {
+            if (id > completedLessonsCount + 1) {
+                return; // Locked lesson
+            }
+            activeChallengeLesson = id;
+            const data = lessonsData[id];
+
+            document.getElementById('challenge-active-label').innerText = `Lesson ${id} Challenge`;
+            document.getElementById('challenge-task-title').innerText = `${data.title} Task`;
+            document.getElementById('challenge-task-desc').innerText = data.challengeTask;
+            document.getElementById('challenge-hint-text').innerText = data.challengeHint;
+            setCodeValue('challenge-code', "");
+            document.getElementById('challenge-output-container').classList.add('hidden');
+            document.getElementById('challenge-run-btn').innerText = "Submit Answer";
+            document.getElementById('challenge-run-btn').className = "apple-btn bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 w-full";
+
+            // Update active styling on bubbles
+            for (let i = 1; i <= 5; i++) {
+                const bubble = document.getElementById('bubble-' + i);
+                if (bubble) {
+                    if (i === id) {
+                        bubble.classList.add('border-2', 'border-black');
+                    } else {
+                        bubble.classList.remove('border-2', 'border-black');
+                    }
+                }
+            }
+        }
+
+        // Update Bubble Lock / Unlock State UI
+        function updateChallengeBubbles() {
+            for (let i = 1; i <= 5; i++) {
+                const bubble = document.getElementById('bubble-' + i);
+                const badge = document.getElementById('badge-' + i);
+
+                if (bubble && badge) {
+                    if (i <= completedLessonsCount + 1) {
+                        bubble.style.opacity = "1";
+                        badge.innerText = i <= completedLessonsCount ? "Completed" : "Unlocked";
+                        badge.className = i <= completedLessonsCount ? "mt-4 px-3 py-1 bg-black text-white text-xs font-semibold rounded-full" : "mt-4 px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full";
+                    } else {
+                        bubble.style.opacity = "0.5";
+                        badge.innerText = "Locked";
+                        badge.className = "mt-4 px-3 py-1 bg-gray-100 text-gray-400 text-xs font-semibold rounded-full";
+                    }
+                }
+            }
+        }
+
+        // Modal Controls
+        function openAuthModal() {
+            if (authState.isLoggedIn) {
+                if (confirm("Do you want to sign out?")) {
+                    authState.isLoggedIn = false;
+                    authState.user = null;
+                    updateAuthUI();
+                }
+                return;
+            }
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        function switchAuthTab(mode) {
+            authState.currentMode = mode;
+            const tabLogin = document.getElementById('tab-login');
+            const tabSignup = document.getElementById('tab-signup');
+            const nameContainer = document.getElementById('name-field-container');
+            const submitBtn = document.getElementById('auth-submit-btn');
+            const googleBtnText = document.getElementById('google-btn-text');
+
+            if (mode === 'login') {
+                tabLogin.className = "flex-1 pb-3 text-sm font-semibold text-black border-b-2 border-black transition-colors";
+                tabSignup.className = "flex-1 pb-3 text-sm font-medium text-gray-400 border-b-2 border-transparent transition-colors";
+                nameContainer.classList.add('hidden');
+                submitBtn.innerText = "Sign In";
+                googleBtnText.innerText = "Sign in with Google";
+            } else {
+                tabSignup.className = "flex-1 pb-3 text-sm font-semibold text-black border-b-2 border-black transition-colors";
+                tabLogin.className = "flex-1 pb-3 text-sm font-medium text-gray-400 border-b-2 border-transparent transition-colors";
+                nameContainer.classList.remove('hidden');
+                submitBtn.innerText = "Create Account";
+                googleBtnText.innerText = "Sign up with Google";
+            }
+        }
+
+        function handleAuthSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const name = document.getElementById('auth-name').value;
+            const errorElement = document.getElementById('auth-error');
+
+            if (password.length < 6) {
+                errorElement.innerText = "Password must be at least 6 characters long.";
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            errorElement.classList.add('hidden');
+            
+            authState.isLoggedIn = true;
+            authState.user = {
+                name: authState.currentMode === 'signup' ? name || email.split('@')[0] : email.split('@')[0],
+                email: email
+            };
+
+            updateAuthUI();
+            closeAuthModal();
+        }
+
+        function simulateGoogleAuth() {
+            authState.isLoggedIn = true;
+            authState.user = {
+                name: "Google User",
+                email: "user@gmail.com"
+            };
+            updateAuthUI();
+            closeAuthModal();
+        }
+
+        function updateAuthUI() {
+            const usernameSpan = document.getElementById('nav-username');
+            if (authState.isLoggedIn && authState.user) {
+                usernameSpan.innerText = authState.user.name;
+            } else {
+                usernameSpan.innerText = "Sign In";
+            }
+        }
+
+        // Lightweight Python Parser for simulation
+        function mockPythonInterpreter(code) {
+            let output = [];
+            let lines = code.split('\n');
+            const variables = {};
+
+            const syntaxError = validatePythonSyntax(code);
+            if (syntaxError) return syntaxError;
+            
+            if (/for\s+[A-Za-z_]\w*\s+in\s+range\s*\(\s*3\s*\)\s*:/.test(code)) {
+                for(let i = 0; i < 3; i++) {
+                    output.push(i);
+                }
+                return output.join('\n');
+            }
+
+            if (/def\s+say_hello\s*\(\s*\)\s*:/.test(code) && /print\s*\(/.test(code)) {
+                return "Python is fun";
+            }
+
+            if (/def\s+run\s*\(\s*\)\s*:/.test(code) && /print\s*\(/.test(code)) {
+                return "Active";
+            }
+
+            if (/class\s+Python\s*:/.test(code) && /version\s*=/.test(code) && /print\s*\(/.test(code)) {
+                return "3.12";
+            }
+
+            if (/class\s+Bot\s*:/.test(code) && /status\s*=/.test(code) && /print\s*\(/.test(code)) {
+                return "Online";
+            }
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line || line.startsWith('#') || line.startsWith('def ') || line.startsWith('for ') || line.startsWith('class ')) continue;
+
+                const assignmentMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
+                if (assignmentMatch) {
+                    try {
+                        variables[assignmentMatch[1]] = evaluatePythonExpression(assignmentMatch[2], variables);
+                    } catch (error) {
+                        return error.message;
+                    }
+                    continue;
+                }
+                
+                let stringMatch = line.match(/^print\s*\(\s*(['"])(.*?)\1\s*\)$/);
+                if (stringMatch) {
+                    output.push(stringMatch[2]);
+                    continue;
+                }
+                
+                let mathMatch = line.match(/^print\s*\(\s*([^'"].*?)\s*\)$/);
+                if (mathMatch) {
+                    try {
+                        let result = evaluatePythonExpression(mathMatch[1], variables);
+                        output.push(result);
+                    } catch(e) {
+                        return e.message;
+                    }
+                    continue;
+                }
+
+                return "SyntaxError: unsupported statement";
+            }
+            return output.join('\n') || "Execution completed successfully";
+        }
+
+        function evaluatePythonExpression(expression, variables) {
+            const trimmedExpression = expression.trim();
+            const stringMatch = trimmedExpression.match(/^(['"])(.*?)\1$/);
+            if (stringMatch) return stringMatch[2];
+
+            const numericExpression = trimmedExpression.replace(/\b[A-Za-z_]\w*\b/g, name => {
+                if (!(name in variables)) throw new Error(`NameError: name '${name}' is not defined`);
+                return variables[name];
+            });
+            if (!/^[\d\s+\-*/%().]+$/.test(numericExpression)) throw new Error("SyntaxError: invalid syntax");
+
+            try {
+                return Function(`"use strict"; return (${numericExpression})`)();
+            } catch (error) {
+                throw new Error("SyntaxError: invalid syntax");
+            }
+        }
+
+        function validatePythonSyntax(code) {
+            if (!code.trim()) return "SyntaxError: code is empty";
+            if (/[\u0000-\u001f]/.test(code.replace(/[\n\t\r]/g, ''))) return "SyntaxError: invalid character";
+
+            const openingBrackets = [];
+            let quote = null;
+            let escaped = false;
+            for (let index = 0; index < code.length; index++) {
+                const character = code[index];
+                if (quote) {
+                    if (escaped) {
+                        escaped = false;
+                    } else if (character === '\\') {
+                        escaped = true;
+                    } else if (character === quote) {
+                        quote = null;
+                    }
+                    continue;
+                }
+                if (character === '"' || character === "'") {
+                    quote = character;
+                } else if (character === '#') {
+                    while (index < code.length && code[index] !== '\n') index++;
+                } else if ('([{'.includes(character)) {
+                    openingBrackets.push(character);
+                } else if (')]}'.includes(character)) {
+                    const expectedOpening = { ')': '(', ']': '[', '}': '{' }[character];
+                    if (openingBrackets.pop() !== expectedOpening) return "SyntaxError: unmatched bracket";
+                }
+            }
+            if (quote || openingBrackets.length) return "SyntaxError: incomplete expression";
+
+            for (const line of code.split('\n')) {
+                const trimmedLine = line.trim();
+                if (!trimmedLine || trimmedLine.startsWith('#')) continue;
+                if (/^(prin|pritn|prnt)\s*\(/.test(trimmedLine)) return "NameError: unknown function";
+                if (/^(for|if|elif|else|while|def|class)\b/.test(trimmedLine) && !trimmedLine.endsWith(':')) return "SyntaxError: expected ':'";
+                if (/^[A-Za-z_]\w*\s*=\s*$/.test(trimmedLine)) return "SyntaxError: invalid assignment";
+            }
+            return "";
+        }
+
+        function escapeHtml(value) {
+            return value.replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            }[character]));
+        }
+
+        function highlightPython(code) {
+            const tokenPattern = /#[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:and|as|assert|break|class|continue|def|elif|else|False|for|from|if|import|in|is|None|not|or|pass|print|return|True|while|with|yield|range)\b|\b\d+(?:\.\d+)?\b|\b[A-Za-z_]\w*(?=\s*\()/g;
+
+            let highlightedCode = '';
+            let lastIndex = 0;
+            let match;
+            while ((match = tokenPattern.exec(code)) !== null) {
+                highlightedCode += escapeHtml(code.slice(lastIndex, match.index));
+                const token = match[0];
+                const escapedToken = escapeHtml(token);
+                if (token.startsWith('#')) highlightedCode += `<span class="syntax-comment">${escapedToken}</span>`;
+                else if (token.startsWith('"') || token.startsWith("'")) highlightedCode += `<span class="syntax-string">${escapedToken}</span>`;
+                else if (/^\d/.test(token)) highlightedCode += `<span class="syntax-number">${escapedToken}</span>`;
+                else if (/^(and|as|assert|break|class|continue|def|elif|else|False|for|from|if|import|in|is|None|not|or|pass|print|return|True|while|with|yield|range)$/.test(token)) highlightedCode += `<span class="syntax-keyword">${escapedToken}</span>`;
+                else highlightedCode += `<span class="syntax-function">${escapedToken}</span>`;
+                lastIndex = tokenPattern.lastIndex;
+            }
+            return highlightedCode + escapeHtml(code.slice(lastIndex));
+        }
+
+        function updateCodeHighlight(codeInput) {
+            const highlight = document.getElementById(`${codeInput.id}-highlight`);
+            if (!highlight) return;
+            highlight.innerHTML = highlightPython(codeInput.value) || ' ';
+            highlight.scrollTop = codeInput.scrollTop;
+            highlight.scrollLeft = codeInput.scrollLeft;
+        }
+
+        function setCodeValue(id, value) {
+            const codeInput = document.getElementById(id);
+            codeInput.value = value;
+            updateCodeHighlight(codeInput);
+        }
+
+        function setupCodeHighlighting() {
+            document.querySelectorAll('textarea.code-input').forEach(codeInput => {
+                codeInput.addEventListener('input', () => updateCodeHighlight(codeInput));
+                codeInput.addEventListener('scroll', () => updateCodeHighlight(codeInput));
+                updateCodeHighlight(codeInput);
+            });
+        }
+
+        // Execute code in Lesson View
+        function executeCode(context) {
+            const codeInput = document.getElementById(`${context}-code`).value;
+            const outputContainer = document.getElementById(`${context}-output-container`);
+            const outputText = document.getElementById(`${context}-output`);
+            const btn = document.getElementById(`${context}-run-btn`);
+            
+            const originalText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = "Running...";
+            btn.classList.add('opacity-75');
+            
+            setTimeout(() => {
+                const result = mockPythonInterpreter(codeInput);
+                outputContainer.classList.remove('hidden');
+                outputText.innerText = result;
+                const hasError = /^(SyntaxError|NameError):/.test(result);
+
+                btn.innerText = hasError ? "Code Error" : "Code Executed";
+                btn.classList.remove('opacity-75');
+                btn.classList.replace('bg-black', hasError ? 'bg-red-600' : 'bg-green-600');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.replace(hasError ? 'bg-red-600' : 'bg-green-600', 'bg-black');
+                    btn.disabled = false;
+                }, 2000);
+            }, 600);
+        }
+
+        // Execute code in Challenge View and validate against active lesson
+        function executeChallenge() {
+            const codeInput = document.getElementById('challenge-code').value;
+            const outputContainer = document.getElementById('challenge-output-container');
+            const outputText = document.getElementById('challenge-output');
+            const btn = document.getElementById('challenge-run-btn');
+            const challengeLessonId = activeChallengeLesson;
+            
+            if (codeInput.trim() === '') {
+                btn.innerText = "Please write some code";
+                btn.classList.replace('bg-black', 'bg-red-600');
+                setTimeout(() => {
+                    btn.innerText = "Submit Answer";
+                    btn.classList.replace('bg-red-600', 'bg-black');
+                }, 2000);
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Checking...";
+            
+            setTimeout(() => {
+                const result = mockPythonInterpreter(codeInput);
+                outputContainer.classList.remove('hidden');
+                outputText.innerText = result;
+
+                if (/^(SyntaxError|NameError):/.test(result)) {
+                    btn.innerText = "Code Error";
+                    btn.classList.replace('bg-black', 'bg-red-600');
+                    setTimeout(() => {
+                        btn.innerText = "Submit Answer";
+                        btn.classList.replace('bg-red-600', 'bg-black');
+                        btn.disabled = false;
+                    }, 2000);
+                    return;
+                }
+
+                const currentExpected = lessonsData[challengeLessonId].expectedResult;
+
+                if (result.toString().trim() === currentExpected.trim()) {
+                    btn.innerText = "Challenge Passed!";
+                    btn.classList.replace('bg-black', 'bg-green-600');
+
+                    if (challengeLessonId > completedLessonsCount) {
+                        completedLessonsCount = Math.max(completedLessonsCount, challengeLessonId);
+                        updateChallengeBubbles();
+                    }
+                    btn.disabled = false;
+                } else {
+                    btn.innerText = "Try Again";
+                    btn.classList.replace('bg-black', 'bg-red-600');
+                    setTimeout(() => {
+                        btn.innerText = "Submit Answer";
+                        btn.classList.replace('bg-red-600', 'bg-black');
+                        btn.disabled = false;
+                    }, 2000);
+                }
+            }, 800);
+        }
+
+        setupCodeHighlighting();
+    -->
+</body>
+</html>

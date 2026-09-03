@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | CutiePy</title>
+    <link rel="stylesheet" href="css/auth-page.css">
+</head>
+<body>
+    <main class="auth-page">
+        <a class="auth-brand" href="index.html" aria-label="Back to CutiePy welcome page">&lt;/&gt; CutiePy</a>
+        <section class="auth-panel" aria-labelledby="auth-title">
+            <div class="auth-logo" aria-hidden="true">
+                <span>&lt;/&gt;</span>
+            </div>
+            <div class="auth-panel-heading">
+                <p class="auth-kicker">CutiePy Account</p>
+                <h1 id="auth-title">Sign in to CutiePy</h1>
+                <p class="auth-subtitle">Use your CutiePy Account to continue learning Python.</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist">
+                <button type="button" id="login-tab" class="auth-tab is-active" role="tab">Sign In</button>
+                <button type="button" id="signup-tab" class="auth-tab" role="tab">Register</button>
+            </div>
+
+            <form id="auth-form" class="auth-form">
+                <div id="name-field" class="field is-hidden">
+                    <label for="auth-name">Full name</label>
+                    <input id="auth-name" type="text" autocomplete="name" placeholder="Alex Smith">
+                </div>
+                <div class="field">
+                    <label for="auth-email">Email address</label>
+                    <input id="auth-email" type="email" autocomplete="email" required placeholder="name@example.com">
+                </div>
+                <div class="field">
+                    <label for="auth-password">Password</label>
+                    <input id="auth-password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters">
+                </div>
+                <p id="auth-message" class="auth-message" role="status"></p>
+                <button id="submit-button" class="auth-submit" type="submit">Sign In</button>
+            </form>
+
+            <p class="auth-footer">Your playful place to learn Python.</p>
+        </section>
+    </main>
+    <script src="js/auth-page.js"></script>
+</body>
+</html>
