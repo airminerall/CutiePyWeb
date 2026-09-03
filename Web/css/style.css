@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --apple-bg: #f5f5f7;
+    --apple-text: #1d1d1f;
+    --apple-card: #ffffff;
+    --apple-blue: #0066cc;
+    --apple-orange: #bf4800;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--apple-bg);
+    color: var(--apple-text);
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.auth-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: auto;
+    background: #1d1d1f;
+    color: #f5f5f7;
+}
+
+.auth-gate-menu {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+}
+
+.auth-gate-menu-button {
+    border: 0;
+    background: transparent;
+    color: #f5f5f7;
+    font-size: 24px;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.auth-gate-content {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px 40px;
+    text-align: center;
+}
+
+.auth-gate-art {
+    position: relative;
+    width: min(280px, 70vw);
+    aspect-ratio: 1;
+    margin-bottom: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 42% 35%, #70d84a 0 6%, #2f8d3d 7% 14%, #252526 15% 43%, transparent 44%);
+    box-shadow: 0 0 0 20px rgba(112, 216, 74, 0.05), 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.auth-gate-orbit,
+.auth-gate-spark {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.auth-gate-orbit-one {
+    top: 8%;
+    right: 3%;
+    width: 25%;
+    height: 25%;
+    background: #63bdf0;
+    box-shadow: 0 0 22px rgba(99, 189, 240, 0.45);
+}
+
+.auth-gate-orbit-two {
+    bottom: 13%;
+    left: 2%;
+    width: 20%;
+    height: 20%;
+    background: #f4a62a;
+    box-shadow: 0 0 20px rgba(244, 166, 42, 0.35);
+}
+
+.auth-gate-code {
+    position: absolute;
+    inset: 28% 19%;
+    display: grid;
+    place-items: center;
+    border: 8px solid #d7f3d0;
+    border-radius: 50%;
+    background: #75d95c;
+    color: #1d1d1f;
+    font: 700 clamp(28px, 7vw, 48px)/1 'Courier New', monospace;
+    transform: rotate(-8deg);
+}
+
+.auth-gate-spark-one {
+    top: 21%;
+    left: 6%;
+    width: 13%;
+    height: 13%;
+    background: #f18b28;
+}
+
+.auth-gate-spark-two {
+    right: 13%;
+    bottom: 7%;
+    width: 10%;
+    height: 10%;
+    background: #8f75e8;
+}
+
+.auth-gate-eyebrow {
+    margin: 0 0 8px;
+    color: #a6a6ab;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.auth-gate h1 {
+    margin: 0;
+    font-size: clamp(64px, 12vw, 132px);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+}
+
+.auth-gate-enter {
+    margin-top: 48px;
+    padding: 13px 52px;
+    border: 0;
+    border-radius: 999px;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.auth-gate-enter:hover { background: #ffffff; transform: translateY(-2px); }
+
+.auth-gate-actions { margin-top: 18px; }
+
+.auth-gate-register {
+    border: 0;
+    background: transparent;
+    color: #a6a6ab;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-gate-register:hover { color: #ffffff; }
+
+.auth-gate-caption {
+    margin: 48px 0 0;
+    color: #77777d;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .auth-gate-art { margin-bottom: 28px; }
+    .auth-gate-enter { margin-top: 36px; }
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.apple-card {
+    background-color: var(--apple-card);
+    border-radius: 18px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apple-card:hover {
+    transform: scale(1.02);
+    box-shadow: 4px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.lesson-number-mark {
+    display: grid;
+    width: 88px;
+    height: 88px;
+    place-items: center;
+    border-radius: 24px;
+    background: #f1f3f5;
+    color: #1d1d1f;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.home-lesson-card { min-width: 300px; }
+
+.home-lesson-number {
+    align-self: center;
+    display: grid;
+    width: 128px;
+    height: 128px;
+    place-items: center;
+    border-radius: 36px;
+    background: linear-gradient(145deg, #f3f4f6, #d1d5db);
+    color: #9ca3af;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.home-lesson-number-dark {
+    background: #252525;
+    color: #52525b;
+}
+
+.home-lesson-number svg {
+    width: 68px;
+    height: 68px;
+}
+
+.account-name-input {
+    min-width: 220px;
+    padding: 10px 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    outline: none;
+    color: var(--apple-text);
+    background: #ffffff;
+    font-size: 14px;
+}
+
+.account-name-input:focus {
+    border-color: var(--apple-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.12);
+}
+
+.account-heading { padding-top: 8px; }
+
+.account-avatar {
+    display: grid;
+    width: 86px;
+    height: 86px;
+    margin: 0 auto 20px;
+    place-items: center;
+    border: 6px solid #d9f3d2;
+    border-radius: 50%;
+    background: #75d95c;
+    color: #1d1d1f;
+    font: 700 20px/1 'Courier New', monospace;
+    transform: rotate(-5deg);
+}
+
+.account-name-form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.account-progress-track {
+    height: 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e5e7eb;
+}
+
+.account-progress-bar {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #0066cc, #4f7de0);
+    transition: width 0.4s ease;
+}
+
+.achievement-card {
+    min-height: 190px;
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    background: #f8f9fa;
+    color: #9ca3af;
+}
+
+.achievement-card.is-unlocked {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+    color: var(--apple-text);
+}
+
+.achievement-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 18px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #9ca3af;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.achievement-card.is-unlocked .achievement-icon {
+    background: var(--apple-blue);
+    color: #ffffff;
+}
+
+.achievement-card h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.achievement-card p {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.achievement-card span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.achievement-roadmap {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 26px 0 0;
+}
+
+.achievement-roadmap-line {
+    position: absolute;
+    top: 58px;
+    right: 12.5%;
+    left: 12.5%;
+    height: 4px;
+    background: #d1d5db;
+}
+
+.achievement-step {
+    position: relative;
+    z-index: 1;
+    min-height: 190px;
+    padding: 0 10px;
+    text-align: center;
+    color: #9ca3af;
+}
+
+.achievement-step-icon {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    place-items: center;
+    border: 5px solid #f5f5f7;
+    border-radius: 50%;
+    background: #d1d5db;
+    color: #6b7280;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.achievement-step-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+}
+
+.achievement-step.is-unlocked { color: var(--apple-text); }
+
+.achievement-step.is-unlocked .achievement-step-icon {
+    background: var(--apple-blue);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px #dbeafe;
+}
+
+.achievement-step h3 {
+    margin: 0 0 7px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.achievement-step p {
+    margin: 0 0 14px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.achievement-step span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+    .account-name-form { flex-direction: column; align-items: center; }
+    .account-name-input { width: min(100%, 260px); }
+    .achievement-roadmap { grid-template-columns: repeat(2, 1fr); row-gap: 26px; }
+    .achievement-roadmap-line { display: none; }
+}
+
+.lesson-video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 32px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    background: #171719;
+}
+
+.lesson-video,
+.lesson-video-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+.lesson-video { display: block; object-fit: cover; }
+
+.lesson-video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #9ca3af;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+}
+
+.lesson-video-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    padding-left: 3px;
+    border: 1px solid #4b5563;
+    border-radius: 50%;
+    color: #d1d5db;
+    font-size: 18px;
+}
+
+.group-member-photo {
+    width: 112px;
+    height: 112px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.group-member-photo-stanly,
+.group-profile-photo-stanly {
+    object-position: 74% center;
+}
+
+.group-member-placeholder {
+    display: flex;
+    width: 112px;
+    height: 112px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #f3f4f6;
+}
+
+.group-member-photo.image-missing,
+.group-profile-photo.image-missing {
+    visibility: hidden;
+}
+
+.group-profile-header {
+    height: 150px;
+    background: linear-gradient(135deg, #d8f1d1, #e1eaf5);
+}
+
+.group-profile-photo {
+    width: 148px;
+    height: 148px;
+    margin-top: -74px;
+    border: 8px solid #ffffff;
+    border-radius: 999px;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.apple-btn {
+    border-radius: 980px;
+    transition: all 0.2s ease;
+}
+
+.apple-btn:active { transform: scale(0.95); }
+
+.apple-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.code-editor {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 12px;
+}
+
+textarea.code-input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: block;
+    background: transparent;
+    color: transparent;
+    caret-color: #f8f8f2;
+    outline: none;
+    resize: none;
+    padding: 0;
+    font-family: inherit;
+    line-height: inherit;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.code-input-layer {
+    position: relative;
+    min-height: 240px;
+    height: 100%;
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.code-highlight {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    overflow: hidden;
+    pointer-events: none;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    font: inherit;
+    line-height: inherit;
+    color: #d4d4d4;
+}
+
+.syntax-keyword { color: #569cd6; }
+.syntax-string { color: #ce9178; }
+.syntax-number { color: #b5cea8; }
+.syntax-comment { color: #6a9955; }
+.syntax-function { color: #dcdcaa; }
