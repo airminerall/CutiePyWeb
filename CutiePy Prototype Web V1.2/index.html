@@ -62,10 +62,9 @@
                 
                 <div class="main-nav-links hidden md:flex items-center gap-1 p-1">
                     <a href="#" data-nav-view="home" onclick="event.preventDefault(); navigateTo('home')" class="nav-link is-active hover:text-black transition-colors">Home</a>
-                    <a href="lessons.html" class="nav-link hover:text-black transition-colors">Lessons</a>
-                    <a href="challenges.html" class="nav-link hover:text-black transition-colors">Challenge</a>
-                    <a href="study-guide.html" class="nav-link hover:text-black transition-colors">Study Guide</a>
-                    <a href="about.html" class="nav-link hover:text-black transition-colors">About</a>
+                    <a href="#" data-nav-view="lesson-menu" onclick="event.preventDefault(); navigateTo('lesson-menu')" class="nav-link hover:text-black transition-colors">Lessons</a>
+                    <a href="#" data-nav-view="challenge" onclick="event.preventDefault(); navigateTo('challenge')" class="nav-link hover:text-black transition-colors">Challenge</a>
+                    <a href="#" data-nav-view="study-guide" onclick="event.preventDefault(); navigateTo('study-guide')" class="nav-link hover:text-black transition-colors">Study Guide</a>
                 </div>
 
                 <div class="flex items-center space-x-5">
@@ -88,10 +87,10 @@
         <div id="site-search-results" class="site-search-results" aria-live="polite"></div>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
     <main id="main-content" class="flex-grow">
         
-        <!-- ================= HOME VIEW ================= -->
+        <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
         <div id="view-home" class="view-section block pb-20">
             <section class="w-full bg-gradient-to-b from-[#e1eaf5] to-white pt-16 pb-12 px-4 text-center">
                 <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">Surprise and shine.</h1>
@@ -149,11 +148,145 @@
             </div>
         </div>
 
-        <!-- ================= LESSON DETAIL VIEW (DEDICATED PAGE) ================= -->
+        <div id="view-study-guide" class="view-section hidden pb-20">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <div class="max-w-3xl mb-12">
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                        <button onclick="navigateTo('home')" class="hover:text-black">Home</button>
+                        <span>/</span>
+                        <span class="text-black">Study Guide</span>
+                    </div>
+                    <p class="text-[var(--apple-orange)] text-xs font-semibold tracking-widest uppercase mb-3">Quick reference</p>
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Keep the essentials close.</h1>
+                    <p class="text-gray-500 text-lg mt-4">A practical reference for understanding Python, reviewing lessons, and preparing for challenges.</p>
+                </div>
+
+                <section class="bg-black text-white rounded-[28px] p-7 md:p-9 mb-8">
+                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                        <div>
+                            <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Your learning path</p>
+                            <h2 class="text-3xl font-bold mt-2">From first line to first project.</h2>
+                        </div>
+                        <p class="text-gray-300 text-sm max-w-md leading-relaxed">Follow the concepts in order. Each step gives you a tool that will appear again in the next lesson.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8">
+                        <div class="border-t border-white/25 pt-4"><span class="text-2xl font-bold">01</span><p class="text-gray-300 text-sm mt-2">Understand values, variables, and basic output.</p></div>
+                        <div class="border-t border-white/25 pt-4"><span class="text-2xl font-bold">02</span><p class="text-gray-300 text-sm mt-2">Control decisions and repeat useful actions.</p></div>
+                        <div class="border-t border-white/25 pt-4"><span class="text-2xl font-bold">03</span><p class="text-gray-300 text-sm mt-2">Organize logic and combine skills into a project.</p></div>
+                    </div>
+                </section>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="apple-card p-7 bg-white border border-gray-100">
+                        <p class="text-[var(--apple-orange)] text-xs font-semibold tracking-widest uppercase">01 - Basics</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Print and variables</h2>
+                        <p class="text-gray-500 text-sm mb-5">Use <code>print()</code> to show a value and variables to store information.</p>
+                        <pre class="bg-black text-white rounded-2xl p-5 text-sm leading-relaxed overflow-x-auto"><code>name = "CutiePy"
+print(name)</code></pre>
+                    </article>
+
+                    <article class="apple-card p-7 bg-[#f3f7ff] border border-blue-100">
+                        <p class="text-[var(--apple-blue)] text-xs font-semibold tracking-widest uppercase">02 - Decisions</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Conditions</h2>
+                        <p class="text-gray-500 text-sm mb-5">Let your program choose what to do with <code>if</code>, <code>elif</code>, and <code>else</code>.</p>
+                        <pre class="bg-white text-gray-900 rounded-2xl p-5 text-sm leading-relaxed overflow-x-auto border border-blue-100"><code>score = 80
+if score &gt;= 60:
+    print("Pass")</code></pre>
+                    </article>
+
+                    <article class="apple-card p-7 bg-white border border-gray-100">
+                        <p class="text-[var(--apple-orange)] text-xs font-semibold tracking-widest uppercase">03 - Repetition</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Loops</h2>
+                        <p class="text-gray-500 text-sm mb-5">Repeat an action with <code>for</code> and a range of values.</p>
+                        <pre class="bg-black text-white rounded-2xl p-5 text-sm leading-relaxed overflow-x-auto"><code>for number in range(3):
+    print(number)</code></pre>
+                    </article>
+
+                    <article class="apple-card p-7 bg-black text-white">
+                        <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">04 - Reuse</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Functions</h2>
+                        <p class="text-gray-300 text-sm mb-5">Give a reusable name to a block of logic with <code>def</code>.</p>
+                        <pre class="bg-white/10 text-white rounded-2xl p-5 text-sm leading-relaxed overflow-x-auto"><code>def greet(name):
+    print("Hello " + name)
+
+greet("Student")</code></pre>
+                    </article>
+
+                    <article class="apple-card p-7 bg-[#fff6ed] border border-orange-100">
+                        <p class="text-[var(--apple-orange)] text-xs font-semibold tracking-widest uppercase">05 - Collections</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Lists and dictionaries</h2>
+                        <p class="text-gray-500 text-sm mb-5">Store multiple values in lists or organize them with readable keys.</p>
+                        <pre class="bg-white text-gray-900 rounded-2xl p-5 text-sm leading-relaxed overflow-x-auto border border-orange-100"><code>colors = ["red", "blue"]
+user = {"name": "Ada"}
+print(user["name"])</code></pre>
+                    </article>
+
+                    <article class="apple-card p-7 bg-white border border-gray-100">
+                        <p class="text-gray-500 text-xs font-semibold tracking-widest uppercase">06 - Debugging</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-3">Read the error</h2>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li><strong class="text-gray-900">SyntaxError</strong> - code structure is invalid.</li>
+                            <li><strong class="text-gray-900">NameError</strong> - a variable does not exist yet.</li>
+                            <li><strong class="text-gray-900">TypeError</strong> - incompatible data types.</li>
+                            <li><strong class="text-gray-900">IndentationError</strong> - spacing is inconsistent.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <section class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-8">
+                    <div class="lg:col-span-3 bg-white border border-gray-100 rounded-3xl p-7">
+                        <p class="text-[var(--apple-blue)] text-xs font-semibold tracking-widest uppercase">Syntax at a glance</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-5">Choose the right tool.</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="border-b border-gray-200 text-gray-400 uppercase text-[11px] tracking-wider"><tr><th class="py-3 pr-5">Goal</th><th class="py-3 pr-5">Use</th><th class="py-3">Example</th></tr></thead>
+                                <tbody class="divide-y divide-gray-100 text-gray-600">
+                                    <tr><td class="py-3 pr-5 font-semibold text-gray-900">Show a value</td><td class="py-3 pr-5"><code>print()</code></td><td class="py-3"><code>print("Hi")</code></td></tr>
+                                    <tr><td class="py-3 pr-5 font-semibold text-gray-900">Make a decision</td><td class="py-3 pr-5"><code>if</code></td><td class="py-3"><code>if ready:</code></td></tr>
+                                    <tr><td class="py-3 pr-5 font-semibold text-gray-900">Repeat code</td><td class="py-3 pr-5"><code>for</code></td><td class="py-3"><code>for x in items:</code></td></tr>
+                                    <tr><td class="py-3 pr-5 font-semibold text-gray-900">Reuse logic</td><td class="py-3 pr-5"><code>def</code></td><td class="py-3"><code>def greet():</code></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 bg-[#fff6ed] border border-orange-100 rounded-3xl p-7">
+                        <p class="text-[var(--apple-orange)] text-xs font-semibold tracking-widest uppercase">Before you run</p>
+                        <h2 class="text-2xl font-bold mt-3 mb-5">A quick checklist.</h2>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li class="flex gap-3"><span class="text-[var(--apple-orange)] font-bold">01</span><span>Check that every variable name is spelled consistently.</span></li>
+                            <li class="flex gap-3"><span class="text-[var(--apple-orange)] font-bold">02</span><span>Check indentation after a colon such as <code>if</code> or <code>for</code>.</span></li>
+                            <li class="flex gap-3"><span class="text-[var(--apple-orange)] font-bold">03</span><span>Read the output before changing your code again.</span></li>
+                            <li class="flex gap-3"><span class="text-[var(--apple-orange)] font-bold">04</span><span>Change one thing at a time so you know what fixed it.</span></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="mt-8 bg-[#f3f7ff] border border-blue-100 rounded-3xl p-7 md:p-9">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <div>
+                            <p class="text-[var(--apple-blue)] text-xs font-semibold tracking-widest uppercase">Mini practice</p>
+                            <h2 class="text-2xl font-bold mt-3">Can you make this program say "Pass"?</h2>
+                            <p class="text-gray-600 text-sm mt-2">Use a variable, a condition, and <code>print()</code> to complete the idea.</p>
+                        </div>
+                        <pre class="bg-white text-gray-900 rounded-2xl p-5 text-sm leading-relaxed border border-blue-100"><code>score = 75
+if score &gt;= 60:
+    # write your print statement here</code></pre>
+                    </div>
+                </section>
+
+                <div class="flex flex-col sm:flex-row gap-4 mt-12">
+                    <button onclick="navigateTo('lesson-menu')" class="apple-btn bg-black text-white px-7 py-3 font-medium hover:bg-gray-800">Back to Lessons</button>
+                    <button onclick="navigateTo('challenge')" class="apple-btn bg-white border border-gray-300 text-black px-7 py-3 font-medium hover:bg-gray-100">Try a Challenge</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
         <div id="view-lesson-detail" class="view-section hidden pb-20">
             <div class="max-w-7xl mx-auto px-4 py-12">
                 
-                <!-- Breadcrumbs -->
+                <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                 <div class="mb-8 hidden">
                     <div class="flex items-center gap-2 text-sm text-gray-500">
                         <button onclick="navigateTo('home')" class="hover:text-black transition-colors">Home</button>
@@ -164,10 +297,10 @@
                     </div>
                 </div>
 
-                <!-- Dedicated View Container (Matches Screenshot Layout) -->
+                <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                     <div class="bg-white rounded-[32px] p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
                     
-                    <!-- Left Side: Theory & Content -->
+                    <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                     <div class="flex flex-col">
                         <div class="mb-8">
                             <span class="inline-block px-3 py-1 bg-gray-100 text-[11px] font-bold rounded-full text-gray-500 uppercase tracking-widest mb-6" id="lesson-badge">MODULE 1</span>
@@ -192,7 +325,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Side: Interactive Terminal & Actions -->
+                    <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                     <div class="flex flex-col h-full pt-2">
                         
                         <div class="flex justify-between items-end mb-4 px-2">
@@ -200,24 +333,24 @@
                             <span class="text-xs font-medium text-gray-400">Python 3.12 Runtime</span>
                         </div>
                         
-                        <!-- Terminal UI -->
+                        <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                         <div class="code-editor bg-[#1a1a1a] rounded-[24px] flex flex-col flex-grow min-h-[400px] shadow-lg overflow-hidden border border-gray-800">
                             
-                            <!-- Mac Traffic Lights -->
+                            <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                             <div class="flex space-x-2 p-5 border-b border-gray-800/50 bg-[#1a1a1a]">
                                 <div class="w-3.5 h-3.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
                                 <div class="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
                                 <div class="w-3.5 h-3.5 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
                             </div>
                             
-                            <!-- Editor Area -->
+                            <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                             <div class="p-6 flex-grow flex flex-col relative">
                                 <div class="code-input-layer text-[15px] font-mono leading-relaxed">
                                     <pre id="lesson-code-highlight" class="code-highlight" aria-hidden="true"></pre>
                                     <textarea id="lesson-code" class="code-input text-[15px] font-mono leading-relaxed" spellcheck="false">print("Hello, CutiePy!")</textarea>
                                 </div>
                                 
-                                <!-- Output Area (Inside Terminal) -->
+                                <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                                 <div id="lesson-output-container" class="mt-4 border-t border-gray-800 pt-5 hidden">
                                     <p class="text-xs text-gray-600 mb-2 font-mono">Output:</p>
                                     <p id="lesson-output" class="text-gray-200 font-mono text-[15px] whitespace-pre-line"></p>
@@ -228,7 +361,7 @@
                         <div class="mt-5 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 px-2 sm:px-6">
                             <button onclick="executeCode('lesson')" id="lesson-run-btn" class="apple-btn bg-black text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-gray-800 shadow-xl transition-all duration-300">Run Code</button>
                             
-                            <button onclick="navigateTo('challenge')" class="apple-btn bg-[#3b66d6] text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 shadow-xl transition-all duration-300">
+                            <button onclick="window.location.href = 'challenge.html?lesson=' + currentLessonId" class="apple-btn bg-[#3b66d6] text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 shadow-xl transition-all duration-300">
                                 Go to Challenge
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </button>
@@ -247,13 +380,14 @@
                 </div>
                 <div id="challenge-catalog" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12"></div>
 
-                <!-- Active Challenge Workspace -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-12">
+                <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
+                <div class="hidden bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-12">
                     
                     <div class="flex-1 flex flex-col justify-between space-y-6">
                         <div>
                             <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1" id="challenge-active-label">Lesson 1 Challenge</p>
-                            <h3 class="text-2xl font-semibold mb-4" id="challenge-task-title">The Task</h3>
+
+                    <h3 class="text-2xl font-semibold mb-4" id="challenge-task-title">The Task</h3>
                             <p class="text-gray-600 leading-relaxed mb-6" id="challenge-task-desc">Write a Python script that calculates 5 + 5 and prints the result to the console.</p>
                             
                             <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
@@ -438,20 +572,53 @@
 
     </main>
 
-    <!-- SECURE AUTHENTICATION MODAL -->
+    <aside id="ai-tutor" class="ai-tutor" aria-label="Chikawa AI Tutor">
+        <div class="ai-tutor-panel" role="dialog" aria-modal="false" aria-labelledby="ai-tutor-title">
+            <div class="ai-tutor-header">
+                <div class="ai-tutor-identity">
+                    <img class="ai-tutor-avatar" src="assets/chikawa.png" alt="Chikawa mascot">
+                    <div>
+                        <p class="ai-tutor-kicker">CutiePy AI Tutor</p>
+                        <h2 id="ai-tutor-title">Chikawa</h2>
+                    </div>
+                </div>
+                <button type="button" class="ai-tutor-close" onclick="toggleAiTutor(false)" aria-label="Close Chikawa">&times;</button>
+            </div>
+            <div id="ai-tutor-messages" class="ai-tutor-messages" aria-live="polite"></div>
+            <div class="ai-tutor-suggestions" aria-label="Suggested questions">
+                <button type="button" onclick="askAiTutor('What is a Python variable?')">Variables</button>
+                <button type="button" onclick="askAiTutor('Explain a for loop with an example')">For loops</button>
+                <button type="button" onclick="askAiTutor('Help me understand this Python error')">Debugging</button>
+            </div>
+            <form id="ai-tutor-form" class="ai-tutor-form" onsubmit="submitAiTutor(event)">
+                <label class="sr-only" for="ai-tutor-input">Ask Chikawa a Python question</label>
+                <input id="ai-tutor-input" type="text" autocomplete="off" placeholder="Ask anything about Python..." maxlength="500" required>
+                <button type="submit" aria-label="Send question">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                </button>
+            </form>
+            <p class="ai-tutor-disclaimer">Chikawa explains concepts and reviews code. Always run and test your own code.</p>
+        </div>
+        <button type="button" id="ai-tutor-toggle" class="ai-tutor-toggle" onclick="toggleAiTutor()" aria-expanded="false" aria-controls="ai-tutor-panel">
+            <img class="ai-tutor-toggle-icon" src="assets/chikawa.png" alt="">
+            <span>Ask Chikawa</span>
+        </button>
+    </aside>
+
+    <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
     <div id="auth-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative border border-gray-100 animate-in fade-in zoom-in duration-200">
             <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
 
-            <!-- Modal Header Tabs -->
+            <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
             <div class="flex border-b border-gray-200 mb-6">
                 <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 pb-3 text-sm font-semibold text-black border-b-2 border-black transition-colors">Sign In</button>
                 <button onclick="switchAuthTab('signup')" id="tab-signup" class="flex-1 pb-3 text-sm font-medium text-gray-400 border-b-2 border-transparent transition-colors">Create Account</button>
             </div>
 
-            <!-- Form -->
+            <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
             <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
                 <div id="name-field-container" class="hidden">
                     <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Full Name</label>
@@ -466,7 +633,7 @@
                     <input type="password" id="auth-password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors" placeholder="••••••••">
                 </div>
 
-                <!-- Remember Me Checkbox -->
+                <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
                 <div id="remember-me-container" class="flex items-center justify-between text-xs text-gray-600 pt-1">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" id="remember-me-checkbox" class="rounded border-gray-300 text-black focus:ring-black">
@@ -486,7 +653,7 @@
                 <div class="flex-grow border-t border-gray-200"></div>
             </div>
 
-            <!-- Google Auth Button placed directly below standard form inputs -->
+            <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
             <button onclick="simulateGoogleAuth()" class="w-full border border-gray-300 rounded-full py-3 px-4 text-sm font-medium flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
@@ -516,16 +683,18 @@
     <script src="js/syntax-highlighter.js?v=20260904-2"></script>
     <script src="js/navigation.js?v=20260904-2"></script>
     <script src="js/execution.js?v=20260904-2"></script>
+    <script src="js/gemini-config.js?v=20260905-1"></script>
+    <script src="js/chatbot.js?v=20260905-3"></script>
     <script src="js/app.js?v=20260904-2"></script>
-    <!--
-        // State Management & Session Reset on Reload
+    <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         let authState = {
             isLoggedIn: false,
             user: null,
             currentMode: 'login'
         };
 
-        // 5 Structured Lessons Data
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         const lessonsData = {
             1: {
                 title: "Lesson 1: Hello World",
@@ -596,9 +765,9 @@
 
         let currentLessonId = 1;
         let activeChallengeLesson = 1;
-        let completedLessonsCount = 0; // Tracks unlocked milestones
+            let completedLessonsCount = 0; // Created By 1820252173 Stanly Lukmana - 4 September 2026
 
-        // View Router
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function navigateTo(viewId) {
             const views = document.querySelectorAll('.view-section');
             views.forEach(view => {
@@ -613,7 +782,7 @@
             }
         }
 
-        // Open specific lesson module (Dedicated Full-Page Lesson View)
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function openLessonDetail(id) {
             currentLessonId = id;
             const data = lessonsData[id];
@@ -631,15 +800,15 @@
             navigateTo('lesson-detail');
         }
 
-        // Open Lesson from Challenge View
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function openLessonFromChallenge() {
             openLessonDetail(activeChallengeLesson);
         }
 
-        // Select Challenge from Apple-style Bubble Menu
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function selectChallengeLesson(id) {
             if (id > completedLessonsCount + 1) {
-                return; // Locked lesson
+                return; // Created By 1820252173 Stanly Lukmana - 4 September 2026
             }
             activeChallengeLesson = id;
             const data = lessonsData[id];
@@ -653,7 +822,7 @@
             document.getElementById('challenge-run-btn').innerText = "Submit Answer";
             document.getElementById('challenge-run-btn').className = "apple-btn bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 w-full";
 
-            // Update active styling on bubbles
+            // Created By 1820252173 Stanly Lukmana - 4 September 2026
             for (let i = 1; i <= 5; i++) {
                 const bubble = document.getElementById('bubble-' + i);
                 if (bubble) {
@@ -666,7 +835,7 @@
             }
         }
 
-        // Update Bubble Lock / Unlock State UI
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function updateChallengeBubbles() {
             for (let i = 1; i <= 5; i++) {
                 const bubble = document.getElementById('bubble-' + i);
@@ -686,7 +855,7 @@
             }
         }
 
-        // Modal Controls
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function openAuthModal() {
             if (authState.isLoggedIn) {
                 if (confirm("Do you want to sign out?")) {
@@ -771,7 +940,7 @@
             }
         }
 
-        // Lightweight Python Parser for simulation
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function mockPythonInterpreter(code) {
             let output = [];
             let lines = code.split('\n');
@@ -951,7 +1120,7 @@
             });
         }
 
-        // Execute code in Lesson View
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function executeCode(context) {
             const codeInput = document.getElementById(`${context}-code`).value;
             const outputContainer = document.getElementById(`${context}-output-container`);
@@ -981,7 +1150,7 @@
             }, 600);
         }
 
-        // Execute code in Challenge View and validate against active lesson
+        // Created By 1820252173 Stanly Lukmana - 4 September 2026
         function executeChallenge() {
             const codeInput = document.getElementById('challenge-code').value;
             const outputContainer = document.getElementById('challenge-output-container');

@@ -1,4 +1,5 @@
 const accountStorageKey = 'cutiepy-account';
+const accountsStorageKey = 'cutiepy-accounts';
 const sessionStorageKey = 'cutiepy-session';
 const queryMode = new URLSearchParams(window.location.search).get('mode');
 let authMode = queryMode === 'signup' ? 'signup' : 'login';
@@ -20,6 +21,16 @@ function setMessage(text, type = '') {
     message.className = `auth-message${type ? ` is-${type}` : ''}`;
 }
 
+function getAccounts() {
+    const accounts = JSON.parse(localStorage.getItem(accountsStorageKey) || '{}');
+    if (Object.keys(accounts).length) return accounts;
+    const legacyAccount = JSON.parse(localStorage.getItem(accountStorageKey) || 'null');
+    if (!legacyAccount?.email) return accounts;
+    accounts[legacyAccount.email.toLowerCase()] = legacyAccount;
+    localStorage.setItem(accountsStorageKey, JSON.stringify(accounts));
+    return accounts;
+}
+
 function setAuthMode(mode) {
     authMode = mode;
     const isSignup = mode === 'signup';
@@ -29,7 +40,7 @@ function setAuthMode(mode) {
     passwordInput.autocomplete = isSignup ? 'new-password' : 'current-password';
     submitButton.textContent = isSignup ? 'Create Account' : 'Sign In';
 
-    // Hide "Remember me" on sign-up; only relevant for sign-in
+    // Created By 1820252173 Stanly Lukmana - 3 September 2026
     rememberRow.style.display = isSignup ? 'none' : 'flex';
 
     loginTab.classList.toggle('is-active', !isSignup);
@@ -43,7 +54,7 @@ function setAuthMode(mode) {
 loginTab.addEventListener('click',  () => setAuthMode('login'));
 signupTab.addEventListener('click', () => setAuthMode('signup'));
 
-// Animated tab underline — adds a micro-bounce when switching
+// Created By 1820252173 Stanly Lukmana - 3 September 2026
 [loginTab, signupTab].forEach(tab => {
     tab.addEventListener('click', () => {
         tab.animate(
@@ -53,7 +64,7 @@ signupTab.addEventListener('click', () => setAuthMode('signup'));
     });
 });
 
-// Shake the panel on error for tactile feedback
+// Created By 1820252173 Stanly Lukmana - 3 September 2026
 function shakePanel() {
     const panel = document.querySelector('.auth-panel');
     panel.animate(
@@ -75,7 +86,8 @@ form.addEventListener('submit', event => {
     const email    = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
     const name     = nameInput.value.trim();
-    const account  = JSON.parse(localStorage.getItem(accountStorageKey) || 'null');
+    const accounts = getAccounts();
+    const account = accounts[email];
     const remember = rememberMe.checked;
 
     if (authMode === 'signup') {
@@ -84,7 +96,8 @@ form.addEventListener('submit', event => {
             shakePanel();
             return;
         }
-        localStorage.setItem(accountStorageKey, JSON.stringify({ email, password, name }));
+        accounts[email] = { email, password, name };
+        localStorage.setItem(accountsStorageKey, JSON.stringify(accounts));
         passwordInput.value = '';
         setAuthMode('login');
         setMessage('Account created. Please sign in to continue.', 'success');
@@ -104,16 +117,16 @@ form.addEventListener('submit', event => {
 
     const userData = { name: account.name, email: account.email };
 
-    // "Remember me" — persist session across browser restarts
+    // Created By 1820252173 Stanly Lukmana - 3 September 2026
     if (remember) {
         localStorage.setItem(sessionStorageKey, JSON.stringify(userData));
     } else {
-        // Use sessionStorage so it clears when the tab/browser closes
+        // Created By 1820252173 Stanly Lukmana - 3 September 2026
         sessionStorage.setItem(sessionStorageKey, JSON.stringify(userData));
         localStorage.removeItem(sessionStorageKey);
     }
 
-    // Animate button to success before redirecting
+    // Created By 1820252173 Stanly Lukmana - 3 September 2026
     submitButton.textContent = 'Signing in…';
     submitButton.disabled = true;
     submitButton.style.background = '#34c759';
@@ -123,7 +136,7 @@ form.addEventListener('submit', event => {
     }, 600);
 });
 
-// Auto-fill remembered email if available
+// Created By 1820252173 Stanly Lukmana - 3 September 2026
 (function restoreEmail() {
     const saved = JSON.parse(localStorage.getItem(sessionStorageKey) || 'null');
     if (saved && saved.email) {

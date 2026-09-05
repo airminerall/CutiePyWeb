@@ -3,12 +3,44 @@ const sessionStorageKey = 'cutiepy-session';
 const progressStorageKey = 'cutiepy-progress';
 let registeredAccount = JSON.parse(localStorage.getItem(accountStorageKey) || 'null');
 
+function getActiveProgressKey() {
+    const email = authState.user?.email?.trim().toLowerCase();
+    return email ? `${progressStorageKey}:${email}` : null;
+}
+
+function getActiveProgress() {
+    const key = getActiveProgressKey();
+    if (!key) return { completedQuestions: {} };
+    try {
+        const progress = JSON.parse(localStorage.getItem(key) || '{"completedQuestions":{}}');
+        return progress && typeof progress.completedQuestions === 'object' ? progress : { completedQuestions: {} };
+    } catch {
+        return { completedQuestions: {} };
+    }
+}
+
+function saveActiveProgress(progress) {
+    const key = getActiveProgressKey();
+    if (key) localStorage.setItem(key, JSON.stringify(progress));
+}
+
+function getCompletedLessonCount(progress = getActiveProgress()) {
+    let count = 0;
+    for (const id of Object.keys(lessonsData)) {
+        const completed = progress.completedQuestions[id] || [];
+        if (completed.length < lessonsData[id].challenges.length) break;
+        count++;
+    }
+    return count;
+}
+
 function openAuthModal(mode) {
     if (authState.isLoggedIn) {
         if (confirm("Do you want to sign out?")) {
             authState.isLoggedIn = false;
             authState.user = null;
             localStorage.removeItem(sessionStorageKey);
+            sessionStorage.removeItem(sessionStorageKey);
             updateAuthUI();
         }
         return;
@@ -65,8 +97,7 @@ function openAccountPage() {
 
 function renderAccountPage() {
     const user = authState.user || {};
-    const completedCount = Number(localStorage.getItem(progressStorageKey) || completedLessonsCount);
-    completedLessonsCount = Math.min(completedCount, Object.keys(lessonsData).length);
+    completedLessonsCount = getCompletedLessonCount();
     const totalChallenges = Object.keys(lessonsData).length;
     const percentage = Math.round((completedLessonsCount / totalChallenges) * 100);
     const nameDisplay = document.getElementById('account-name-display');
@@ -119,10 +150,11 @@ function enterWebsite() {
 }
 
 function restoreSession() {
-    const savedUser = JSON.parse(localStorage.getItem(sessionStorageKey) || 'null');
+    const savedUser = JSON.parse(localStorage.getItem(sessionStorageKey) || sessionStorage.getItem(sessionStorageKey) || 'null');
     if (savedUser) {
         authState.isLoggedIn = true;
         authState.user = savedUser;
+        completedLessonsCount = getCompletedLessonCount();
         updateAuthUI();
     }
 }

@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     setupCodeHighlighting();
+    restoreSession();
+    completedLessonsCount = getCompletedLessonCount();
     renderLessonCatalog();
     renderHomeLessonCatalog();
     renderChallengeCatalog();
-    completedLessonsCount = Number(localStorage.getItem(progressStorageKey) || 0);
     updateChallengeBubbles();
     setupAccountForm();
-    restoreSession();
     enterWebsite();
+    const requestedLessonId = Number(new URLSearchParams(window.location.search).get('lesson'));
+    if (lessonsData[requestedLessonId]) openLessonDetail(requestedLessonId);
 });

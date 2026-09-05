@@ -1,7 +1,4 @@
-/* ============================================================
-   CutiePy — Auth Pages  |  Apple-style design system
-   Font: -apple-system (SF Pro on Apple, Segoe UI on Windows)
-   ============================================================ */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 
 :root {
     color-scheme: light;
@@ -26,7 +23,7 @@
     --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Reset */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 *, *::before, *::after { box-sizing: border-box; }
 body {
     margin: 0;
@@ -38,7 +35,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Page shell ─────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-page {
     min-height: 100vh;
     display: flex;
@@ -54,7 +51,7 @@ body {
     to   { opacity: 1; }
 }
 
-/* ── Brand link ─────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-brand {
     position: fixed;
     top: 20px;
@@ -70,7 +67,7 @@ body {
 }
 .auth-brand:hover { opacity: 0.65; }
 
-/* ── Panel (card) ───────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-panel {
     width: min(100%, 460px);
     background: var(--panel-bg);
@@ -85,7 +82,7 @@ body {
     to   { opacity: 1; transform: translateY(0)    scale(1);    }
 }
 
-/* ── Logo mark ──────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-logo {
     display: grid;
     place-items: center;
@@ -113,7 +110,7 @@ body {
     to   { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* ── Heading area ───────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-panel-heading {
     text-align: center;
     margin-bottom: 28px;
@@ -146,7 +143,7 @@ h1 {
     max-width: 340px;
 }
 
-/* ── Tab switcher ───────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -176,7 +173,7 @@ h1 {
 }
 .auth-tab:not(.is-active):hover { color: var(--text); }
 
-/* ── Form ───────────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -189,7 +186,7 @@ h1 {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Fields */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field.is-hidden { display: none; }
 
@@ -225,7 +222,7 @@ input[type="password"]:focus {
     box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.18);
 }
 
-/* ── Remember me row ────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .remember-row {
     display: flex;
     align-items: center;
@@ -261,7 +258,7 @@ input[type="password"]:focus {
     letter-spacing: 0em;
 }
 
-/* ── Status message ─────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-message {
     min-height: 16px;
     margin: 0;
@@ -273,7 +270,7 @@ input[type="password"]:focus {
 .auth-message.is-error   { color: var(--error); }
 .auth-message.is-success { color: var(--success); }
 
-/* ── Submit button ──────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-submit {
     width: 100%;
     padding: 14px;
@@ -298,7 +295,7 @@ input[type="password"]:focus {
     box-shadow: none;
 }
 
-/* ── Footer note ────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-footer {
     margin: 24px 0 0;
     color: var(--subtle);
@@ -308,7 +305,7 @@ input[type="password"]:focus {
     animation: content-in 0.5s ease 0.36s both;
 }
 
-/* ── Auth choice page (auth.html) ───────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 .auth-choice .auth-panel-heading { margin-bottom: 0; }
 
 .auth-choice-actions {
@@ -353,7 +350,7 @@ input[type="password"]:focus {
     border-color: #86868b;
 }
 
-/* ── Responsive ─────────────────────────────────────── */
+/* Created By 1820252173 Stanly Lukmana - 2 September 2026 */
 @media (max-width: 520px) {
     .auth-brand { top: 16px; left: 18px; font-size: 16px; }
     .auth-page  { padding: 72px 16px 48px; }
