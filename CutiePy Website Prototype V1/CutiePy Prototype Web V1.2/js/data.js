@@ -22,3 +22,17 @@ const lessonsData = {
 let currentLessonId = 1;
 let activeChallengeLesson = 1;
 let completedLessonsCount = 0;
+
+const challengeFollowUps = [
+    { title: 'Quick Check', task: 'Print the word "Ready" to the console.', hint: 'Use: print("Ready")', expectedResult: 'Ready' },
+    { title: 'Number Practice', task: 'Calculate 8 + 4 and print the result.', hint: 'Use: print(8 + 4)', expectedResult: '12' },
+    { title: 'Message Practice', task: 'Print the text "Python is fun".', hint: 'Text inside print() needs quotation marks.', expectedResult: 'Python is fun' },
+    { title: 'Final Check', task: 'Calculate 6 * 5 and print the result.', hint: 'Use: print(6 * 5)', expectedResult: '30' }
+];
+
+Object.entries(lessonsData).forEach(([id, lesson]) => {
+    lesson.challenges = [
+        { title: 'Core Challenge', task: lesson.challengeTask, hint: lesson.challengeHint, expectedResult: lesson.expectedResult },
+        ...challengeFollowUps.map(challenge => ({ ...challenge, title: `${lesson.theoryTitle}: ${challenge.title}` }))
+    ];
+});

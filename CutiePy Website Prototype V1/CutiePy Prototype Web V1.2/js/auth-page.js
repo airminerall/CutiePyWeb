@@ -1,4 +1,5 @@
 const accountStorageKey = 'cutiepy-account';
+const accountsStorageKey = 'cutiepy-accounts';
 const sessionStorageKey = 'cutiepy-session';
 const queryMode = new URLSearchParams(window.location.search).get('mode');
 let authMode = queryMode === 'signup' ? 'signup' : 'login';
@@ -18,6 +19,16 @@ const rememberMe    = document.getElementById('remember-me');
 function setMessage(text, type = '') {
     message.textContent = text;
     message.className = `auth-message${type ? ` is-${type}` : ''}`;
+}
+
+function getAccounts() {
+    const accounts = JSON.parse(localStorage.getItem(accountsStorageKey) || '{}');
+    if (Object.keys(accounts).length) return accounts;
+    const legacyAccount = JSON.parse(localStorage.getItem(accountStorageKey) || 'null');
+    if (!legacyAccount?.email) return accounts;
+    accounts[legacyAccount.email.toLowerCase()] = legacyAccount;
+    localStorage.setItem(accountsStorageKey, JSON.stringify(accounts));
+    return accounts;
 }
 
 function setAuthMode(mode) {
@@ -75,7 +86,8 @@ form.addEventListener('submit', event => {
     const email    = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
     const name     = nameInput.value.trim();
-    const account  = JSON.parse(localStorage.getItem(accountStorageKey) || 'null');
+    const accounts = getAccounts();
+    const account = accounts[email];
     const remember = rememberMe.checked;
 
     if (authMode === 'signup') {
@@ -84,7 +96,8 @@ form.addEventListener('submit', event => {
             shakePanel();
             return;
         }
-        localStorage.setItem(accountStorageKey, JSON.stringify({ email, password, name }));
+        accounts[email] = { email, password, name };
+        localStorage.setItem(accountsStorageKey, JSON.stringify(accounts));
         passwordInput.value = '';
         setAuthMode('login');
         setMessage('Account created. Please sign in to continue.', 'success');

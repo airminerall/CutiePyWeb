@@ -90,34 +90,21 @@ function openGroupProfile(member) {
 
 function selectChallengeLesson(id) {
     if (id > completedLessonsCount + 1) return;
-    activeChallengeLesson = id;
-    const data = lessonsData[id];
-    document.getElementById('challenge-active-label').innerText = `Lesson ${id} Challenge`;
-    document.getElementById('challenge-task-title').innerText = `${data.title} Task`;
-    document.getElementById('challenge-task-desc').innerText = data.challengeTask;
-    document.getElementById('challenge-hint-text').innerText = data.challengeHint;
-    setCodeValue('challenge-code', "");
-    document.getElementById('challenge-output-container').classList.add('hidden');
-    document.getElementById('challenge-run-btn').innerText = "Submit Answer";
-    document.getElementById('challenge-run-btn').className = "apple-btn bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 w-full";
-    for (let index = 1; index <= Object.keys(lessonsData).length; index++) {
-        const bubble = document.getElementById('bubble-' + index);
-        if (bubble) {
-            if (index === id) bubble.classList.add('border-2', 'border-black');
-            else bubble.classList.remove('border-2', 'border-black');
-        }
-    }
+    window.location.href = `challenge.html?lesson=${id}`;
 }
 
 function updateChallengeBubbles() {
     const lessonCount = Object.keys(lessonsData).length;
+    const progress = getActiveProgress();
     for (let index = 1; index <= lessonCount; index++) {
         const bubble = document.getElementById('bubble-' + index);
         const badge = document.getElementById('badge-' + index);
         if (!bubble || !badge) continue;
+        const completedQuestions = (progress.completedQuestions[String(index)] || []).length;
+        const totalQuestions = lessonsData[index].challenges.length;
         if (index <= completedLessonsCount + 1) {
             bubble.style.opacity = "1";
-            badge.innerText = index <= completedLessonsCount ? "Completed" : "Unlocked";
+            badge.innerText = index <= completedLessonsCount ? "Completed" : completedQuestions ? `${completedQuestions}/${totalQuestions} complete` : "Unlocked";
             badge.className = index <= completedLessonsCount ? "mt-4 px-3 py-1 bg-black text-white text-xs font-semibold rounded-full" : "mt-4 px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full";
         } else {
             bubble.style.opacity = "0.5";
@@ -190,7 +177,7 @@ function renderChallengeCatalog() {
         <article id="bubble-${id}" onclick="selectChallengeLesson(${id})" class="apple-card p-6 flex flex-col items-center text-center cursor-pointer border-2 ${Number(id) === 1 ? 'border-black' : 'border-transparent'}">
             <div class="w-16 h-16 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-xl font-bold mb-4">${id}</div>
             <h3 class="font-bold text-lg mb-1">${lesson.title.replace(/^Lesson \d+: /, '')}</h3>
-            <p class="text-xs text-gray-500">${lesson.theoryTitle}</p>
+            <p class="text-xs text-gray-500">5 questions</p>
             <span id="badge-${id}" class="mt-4 px-3 py-1 bg-gray-100 text-gray-500 text-xs font-semibold rounded-full">${Number(id) === 1 ? 'Unlocked' : 'Locked'}</span>
         </article>
     `).join('');

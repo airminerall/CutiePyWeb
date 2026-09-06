@@ -361,7 +361,7 @@ if score &gt;= 60:
                         <div class="mt-5 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 px-2 sm:px-6">
                             <button onclick="executeCode('lesson')" id="lesson-run-btn" class="apple-btn bg-black text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-gray-800 shadow-xl transition-all duration-300">Run Code</button>
                             
-                            <button onclick="navigateTo('challenge')" class="apple-btn bg-[#3b66d6] text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 shadow-xl transition-all duration-300">
+                            <button onclick="window.location.href = 'challenge.html?lesson=' + currentLessonId" class="apple-btn bg-[#3b66d6] text-white px-8 py-3.5 text-[15px] font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 shadow-xl transition-all duration-300">
                                 Go to Challenge
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </button>
@@ -381,7 +381,7 @@ if score &gt;= 60:
                 <div id="challenge-catalog" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12"></div>
 
                 <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-12">
+                <div class="hidden bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-12">
                     
                     <div class="flex-1 flex flex-col justify-between space-y-6">
                         <div>
@@ -572,6 +572,39 @@ if score &gt;= 60:
 
     </main>
 
+    <aside id="ai-tutor" class="ai-tutor" aria-label="Chikawa AI Tutor">
+        <div class="ai-tutor-panel" role="dialog" aria-modal="false" aria-labelledby="ai-tutor-title">
+            <div class="ai-tutor-header">
+                <div class="ai-tutor-identity">
+                    <img class="ai-tutor-avatar" src="assets/chikawa.png" alt="Chikawa mascot">
+                    <div>
+                        <p class="ai-tutor-kicker">CutiePy AI Tutor</p>
+                        <h2 id="ai-tutor-title">Chikawa</h2>
+                    </div>
+                </div>
+                <button type="button" class="ai-tutor-close" onclick="toggleAiTutor(false)" aria-label="Close Chikawa">&times;</button>
+            </div>
+            <div id="ai-tutor-messages" class="ai-tutor-messages" aria-live="polite"></div>
+            <div class="ai-tutor-suggestions" aria-label="Suggested questions">
+                <button type="button" onclick="askAiTutor('What is a Python variable?')">Variables</button>
+                <button type="button" onclick="askAiTutor('Explain a for loop with an example')">For loops</button>
+                <button type="button" onclick="askAiTutor('Help me understand this Python error')">Debugging</button>
+            </div>
+            <form id="ai-tutor-form" class="ai-tutor-form" onsubmit="submitAiTutor(event)">
+                <label class="sr-only" for="ai-tutor-input">Ask Chikawa a Python question</label>
+                <input id="ai-tutor-input" type="text" autocomplete="off" placeholder="Ask anything about Python..." maxlength="500" required>
+                <button type="submit" aria-label="Send question">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                </button>
+            </form>
+            <p class="ai-tutor-disclaimer">Chikawa explains concepts and reviews code. Always run and test your own code.</p>
+        </div>
+        <button type="button" id="ai-tutor-toggle" class="ai-tutor-toggle" onclick="toggleAiTutor()" aria-expanded="false" aria-controls="ai-tutor-panel">
+            <img class="ai-tutor-toggle-icon" src="assets/chikawa.png" alt="">
+            <span>Ask Chikawa</span>
+        </button>
+    </aside>
+
     <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026 -->
     <div id="auth-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative border border-gray-100 animate-in fade-in zoom-in duration-200">
@@ -650,6 +683,8 @@ if score &gt;= 60:
     <script src="js/syntax-highlighter.js?v=20260904-2"></script>
     <script src="js/navigation.js?v=20260904-2"></script>
     <script src="js/execution.js?v=20260904-2"></script>
+    <script src="js/gemini-config.js?v=20260905-1"></script>
+    <script src="js/chatbot.js?v=20260905-3"></script>
     <script src="js/app.js?v=20260904-2"></script>
     <!-- Created By 1820252173 Stanly Lukmana - 4 September 2026
         // Created By 1820252173 Stanly Lukmana - 4 September 2026
