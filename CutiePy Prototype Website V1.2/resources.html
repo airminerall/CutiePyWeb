@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Resources | CutiePy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css?v=20260910-2">
+</head>
+<body class="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
+    <header class="sticky top-0 z-20 border-b border-gray-200 bg-white/90 backdrop-blur">
+        <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+            <a href="index.html" class="font-semibold hover:text-black">&lt;/&gt; CutiePy</a>
+            <div class="flex items-center gap-4 text-sm">
+                <a href="faq.html" class="text-gray-600 hover:text-black">FAQ</a>
+                <a href="learning-path.html" class="text-gray-600 hover:text-black">Learning Path</a>
+                <a href="index.html" class="text-gray-600 hover:text-black">Back to CutiePy</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-12">
+        <header class="mb-10 max-w-3xl">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--apple-orange)]">Python resources</p>
+            <h1 class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">A quick reference for your next line of code.</h1>
+            <p class="mt-4 text-lg leading-relaxed text-gray-600">Review the building blocks of Python before you return to a lesson or challenge.</p>
+        </header>
+
+        <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" aria-label="Python glossary">
+            <article class="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-[var(--apple-orange)]">Basics</p><h2 class="mt-3 text-2xl font-bold">Variables</h2><p class="mt-3 text-gray-600">A variable stores a value under a readable name.</p><pre class="mt-5 overflow-x-auto rounded-2xl bg-black p-4 text-sm text-white"><code>name = "CutiePy"
+print(name)</code></pre></article>
+            <article class="rounded-3xl border border-blue-100 bg-[#f3f7ff] p-7 shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-[var(--apple-blue)]">Decisions</p><h2 class="mt-3 text-2xl font-bold">Conditions</h2><p class="mt-3 text-gray-600">Use conditions when a program needs to choose what happens next.</p><pre class="mt-5 overflow-x-auto rounded-2xl bg-white p-4 text-sm"><code>if score &gt;= 60:
+    print("Pass")</code></pre></article>
+            <article class="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-[var(--apple-orange)]">Repetition</p><h2 class="mt-3 text-2xl font-bold">Loops</h2><p class="mt-3 text-gray-600">Loops repeat a block of code over a range or collection.</p><pre class="mt-5 overflow-x-auto rounded-2xl bg-black p-4 text-sm text-white"><code>for number in range(3):
+    print(number)</code></pre></article>
+            <article class="rounded-3xl border border-gray-100 bg-black p-7 text-white shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Reuse</p><h2 class="mt-3 text-2xl font-bold">Functions</h2><p class="mt-3 text-gray-300">Functions give a reusable name to a block of logic.</p><pre class="mt-5 overflow-x-auto rounded-2xl bg-white/10 p-4 text-sm"><code>def greet(name):
+    return "Hi " + name</code></pre></article>
+            <article class="rounded-3xl border border-orange-100 bg-[#fff6ed] p-7 shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-[var(--apple-orange)]">Collections</p><h2 class="mt-3 text-2xl font-bold">Lists and dictionaries</h2><p class="mt-3 text-gray-600">Lists keep ordered values; dictionaries pair readable keys with values.</p><pre class="mt-5 overflow-x-auto rounded-2xl bg-white p-4 text-sm"><code>colors = ["red", "blue"]
+user = {"name": "Ada"}</code></pre></article>
+            <article class="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm"><p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Debugging</p><h2 class="mt-3 text-2xl font-bold">Common errors</h2><ul class="mt-5 space-y-3 text-gray-600"><li><strong class="text-gray-900">SyntaxError</strong> means the code structure is invalid.</li><li><strong class="text-gray-900">NameError</strong> means a name is missing or misspelled.</li><li><strong class="text-gray-900">TypeError</strong> means incompatible data types were used.</li></ul></article>
+        </section>
+
+        <div class="mt-10 flex flex-wrap gap-4"><a href="index.html#study-guide" class="apple-btn bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800">Open Study Guide</a><a href="learning-path.html" class="apple-btn border border-gray-300 bg-white px-6 py-3 text-sm font-medium hover:bg-gray-100">Open Learning Path</a><a href="faq.html" class="apple-btn border border-gray-300 bg-white px-6 py-3 text-sm font-medium hover:bg-gray-100">Visit FAQ</a></div>
+    </main>
+    <script src="js/loader.js"></script>
+    <script src="js/page-progress.js"></script>
+</body>
+</html>
