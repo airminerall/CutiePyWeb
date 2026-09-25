@@ -460,6 +460,94 @@ print(double(5))</code></pre>
                     </article>
                 </section>
 
+                <section class="study-flow-section mt-8">
+                    <div class="study-flow-header">
+                        <p class="text-[var(--apple-blue)] text-xs font-semibold tracking-widest uppercase">Study flow</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-3">How a learner moves through CutiePy.</h2>
+                    </div>
+
+                    <div class="study-flow-shell">
+                        <svg id="study-flow-svg" class="study-flow-svg" viewBox="0 0 920 420" role="img" aria-labelledby="study-flow-title study-flow-desc">
+                            <title id="study-flow-title">CutiePy learning flowchart</title>
+                            <desc id="study-flow-desc">The learner starts at sign in, opens a lesson, practices with challenge, then reviews the study guide and repeats the cycle.</desc>
+
+                            <defs>
+                                <linearGradient id="flowGradA" x1="0%" x2="100%" y1="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#bbcffd"/>
+                                    <stop offset="100%" stop-color="#8fb6ff"/>
+                                </linearGradient>
+                                <linearGradient id="flowGradB" x1="0%" x2="100%" y1="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#ffdca8"/>
+                                    <stop offset="100%" stop-color="#f4b66d"/>
+                                </linearGradient>
+                                <linearGradient id="flowGradC" x1="0%" x2="100%" y1="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#d7f0cb"/>
+                                    <stop offset="100%" stop-color="#7bcf8e"/>
+                                </linearGradient>
+                            </defs>
+
+                            <g class="study-flow-links" aria-hidden="true">
+                                <path d="M185 90 H285"/>
+                                <path d="M412 90 H505"/>
+                                <path d="M625 90 H720"/>
+                                <path d="M270 170 V245 H610 V170"/>
+                                <path d="M350 245 H445"/>
+                                <path d="M562 245 H660"/>
+                                <path d="M760 170 V90"/>
+                            </g>
+
+                            <g class="flow-node is-active" data-node="start" tabindex="0" transform="translate(20,50)">
+                                <rect x="0" y="0" width="180" height="80" rx="18"/>
+                                <text x="90" y="35" text-anchor="middle">Start</text>
+                                <text x="90" y="54" text-anchor="middle">Sign In</text>
+                            </g>
+
+                            <g class="flow-node" data-node="lesson" tabindex="0" transform="translate(290,50)">
+                                <rect x="0" y="0" width="180" height="80" rx="18"/>
+                                <text x="90" y="35" text-anchor="middle">01</text>
+                                <text x="90" y="54" text-anchor="middle">Open Lesson</text>
+                            </g>
+
+                            <g class="flow-node" data-node="guide" tabindex="0" transform="translate(510,50)">
+                                <rect x="0" y="0" width="180" height="80" rx="18"/>
+                                <text x="90" y="35" text-anchor="middle">02</text>
+                                <text x="90" y="54" text-anchor="middle">Study Guide</text>
+                            </g>
+
+                            <g class="flow-node" data-node="challenge" tabindex="0" transform="translate(730,50)">
+                                <rect x="0" y="0" width="180" height="80" rx="18"/>
+                                <text x="90" y="35" text-anchor="middle">03</text>
+                                <text x="90" y="54" text-anchor="middle">Practice</text>
+                            </g>
+
+                            <g class="flow-node flow-node--branch" data-node="checkpoint" tabindex="0" transform="translate(290,200)">
+                                <rect x="0" y="0" width="340" height="90" rx="22"/>
+                                <text x="170" y="38" text-anchor="middle">Checkpoint</text>
+                                <text x="170" y="58" text-anchor="middle">Understand concept, then test again</text>
+                            </g>
+
+                            <g class="flow-node flow-node--simple" data-node="result" tabindex="0" transform="translate(660,200)">
+                                <rect x="0" y="0" width="205" height="90" rx="22"/>
+                                <text x="102.5" y="38" text-anchor="middle">Result</text>
+                                <text x="102.5" y="58" text-anchor="middle">Unlock next lesson</text>
+                            </g>
+                        </svg>
+
+                        <div class="study-flow-caption" id="study-flow-caption">
+                            <strong>Sign in → Lesson → Study Guide → Challenge</strong>
+                            <span>CutiePy structures the learning path so every topic builds naturally from concept to practice.</span>
+                        </div>
+
+                        <div class="study-flow-legend" aria-label="Study flow legend">
+                            <button type="button" class="flow-legend-item is-active" data-focus="start">Start</button>
+                            <button type="button" class="flow-legend-item" data-focus="lesson">Lesson</button>
+                            <button type="button" class="flow-legend-item" data-focus="guide">Guide</button>
+                            <button type="button" class="flow-legend-item" data-focus="challenge">Challenge</button>
+                            <button type="button" class="flow-legend-item" data-focus="checkpoint">Check</button>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="mt-8 bg-[#f3f7ff] border border-blue-100 rounded-3xl p-7 md:p-9">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div>
@@ -880,6 +968,65 @@ if score &gt;= 60:
     <script src="js/gemini-config.js?v=20260905-1"></script>
     <script src="js/chatbot.js?v=20260908-1"></script>
     <script src="js/app.js?v=20260904-2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const flowMap = {
+                start: {
+                    title: 'Sign in → Lesson → Study Guide → Challenge',
+                    text: 'CutiePy structures the learning path so every topic builds naturally from concept to practice.'
+                },
+                lesson: {
+                    title: 'Lesson first, then explanation',
+                    text: 'Learners open a concept, review the theory, and immediately connect it to the practical exercise.'
+                },
+                guide: {
+                    title: 'Study Guide for quick review',
+                    text: 'The guide gives a fast recap of syntax, patterns, checklist, and debugging habits before the next task.'
+                },
+                challenge: {
+                    title: 'Challenge to validate understanding',
+                    text: 'Each exercise checks whether the student can apply the lesson in a runnable example.'
+                },
+                checkpoint: {
+                    title: 'Checkpoint before moving on',
+                    text: 'If the learner can explain and use the idea, the next lesson unlocks and the cycle continues.'
+                }
+            };
+
+            const nodes = document.querySelectorAll('.flow-node');
+            const buttons = document.querySelectorAll('.flow-legend-item');
+            const caption = document.getElementById('study-flow-caption');
+
+            if (!caption || !nodes.length) return;
+
+            const setActive = (key) => {
+                const details = flowMap[key] || flowMap.start;
+                nodes.forEach(node => {
+                    node.classList.toggle('is-active', node.dataset.node === key);
+                });
+                buttons.forEach(btn => {
+                    btn.classList.toggle('is-active', btn.dataset.focus === key);
+                });
+                caption.innerHTML = `<strong>${details.title}</strong><span>${details.text}</span>`;
+            };
+
+            nodes.forEach(node => {
+                node.addEventListener('click', () => setActive(node.dataset.node));
+                node.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setActive(node.dataset.node);
+                    }
+                });
+            });
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => setActive(button.dataset.focus));
+            });
+
+            setActive('start');
+        });
+    </script>
     <!--
         let authState = {
             isLoggedIn: false,

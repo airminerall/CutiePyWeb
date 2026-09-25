@@ -1551,6 +1551,140 @@ body {
 
 #view-home > section:nth-child(2)::after { display: none; }
 
+.study-flow-section {
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 28px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+}
+
+.study-flow-header {
+    margin-bottom: 1.25rem;
+}
+
+.study-flow-shell {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.92), rgba(239, 246, 255, 0.9));
+    border: 1px solid rgba(147, 197, 253, 0.18);
+    border-radius: 24px;
+    padding: 1rem;
+}
+
+.study-flow-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.study-flow-links path {
+    fill: none;
+    stroke: rgba(148, 163, 184, 0.85);
+    stroke-width: 2.5;
+    stroke-dasharray: 8 10;
+    stroke-linecap: round;
+}
+
+.flow-node {
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.flow-node rect {
+    fill: #ffffff;
+    stroke: rgba(96, 165, 250, 0.45);
+    stroke-width: 2;
+    filter: drop-shadow(0 10px 18px rgba(59, 130, 246, 0.08));
+    transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+}
+
+.flow-node text {
+    fill: #111827;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    font-family: Arial, sans-serif;
+}
+
+.flow-node text:last-of-type {
+    font-size: 14px;
+    font-weight: 600;
+    fill: #475569;
+}
+
+.flow-node:hover rect,
+.flow-node:focus rect,
+.flow-node.is-active rect {
+    fill: #eff6ff;
+    stroke: #3b82f6;
+    stroke-width: 2.5;
+    filter: drop-shadow(0 12px 20px rgba(59, 130, 246, 0.12));
+}
+
+.flow-node:hover,
+.flow-node:focus,
+.flow-node.is-active {
+    filter: brightness(1.01);
+}
+
+.flow-node--branch rect {
+    fill: #f8fafc;
+    stroke: rgba(34, 197, 94, 0.5);
+}
+
+.flow-node--simple rect {
+    fill: #fffaf0;
+    stroke: rgba(251, 146, 60, 0.45);
+}
+
+.study-flow-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    color: #0f172a;
+}
+
+.study-flow-caption strong {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.study-flow-caption span {
+    color: #475569;
+    line-height: 1.5;
+}
+
+.study-flow-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.flow-legend-item {
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: #ffffff;
+    color: #0f172a;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+}
+
+.flow-legend-item:hover,
+.flow-legend-item.is-active {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+}
+
 /* Use every supplied reference asset as a soft, non-blocking illustration layer. */
 #view-home > section:nth-child(2),
 #view-home > section:nth-child(3),
